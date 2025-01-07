@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/app/components/Buttons/Button';
+import { ButtonCustom } from '@/app/components/Buttons/Button';
 import { Field } from '../components/Fields/Field';
 import { Tab } from '../components/Tabs/Tab';
 import { useSnackbar } from '../components/Snackbars/Snackbar';
@@ -90,17 +90,17 @@ export default function Page() {
             <div className="text-center">
                 <h1 className='font-inter font-bold mb-4'>Buttons</h1>
                 <div className="grid grid-cols-4 gap-5 p-5 text-white rounded-lg">
-                    <Button icon={<IconListSearch />} variant='primary'>Check</Button>
-                    <Button icon={<IconTruckDelivery />} variant='primary'>Create DO</Button>
-                    <Button icon={<IconArrowRight />} variant='primary'>Submit Form</Button>
-                    <Button icon={<IconCircleCheck />} variant='primary'>Confirm</Button>
-                    <Button icon={<IconCircleCheck />} variant='positive'>Approve</Button>
-                    <Button icon={<IconCircleMinus />} variant='danger'>Reject</Button>
-                    <Button icon={<IconTarget />} variant='primary'>Accept PO</Button>
-                    <Button icon={<IconPlus />} variant='primary'>New Accept PO</Button>
-                    <Button icon={<IconArrowBack />} variant='secondary'>Back to list</Button>
-                    <Button variant='primary'>Submit Accept DO Form</Button>
-                    <Button variant='tertiary'>Cancel</Button>
+                    <ButtonCustom icon={<IconListSearch />} variant='primary'>Check</ButtonCustom>
+                    <ButtonCustom icon={<IconTruckDelivery />} variant='primary'>Create DO</ButtonCustom>
+                    <ButtonCustom icon={<IconArrowRight />} variant='primary'>Submit Form</ButtonCustom>
+                    <ButtonCustom icon={<IconCircleCheck />} variant='primary'>Confirm</ButtonCustom>
+                    <ButtonCustom icon={<IconCircleCheck />} variant='positive'>Approve</ButtonCustom>
+                    <ButtonCustom icon={<IconCircleMinus />} variant='danger'>Reject</ButtonCustom>
+                    <ButtonCustom icon={<IconTarget />} variant='primary'>Accept PO</ButtonCustom>
+                    <ButtonCustom icon={<IconPlus />} variant='primary'>New Accept PO</ButtonCustom>
+                    <ButtonCustom icon={<IconArrowBack />} variant='secondary'>Back to list</ButtonCustom>
+                    <ButtonCustom variant='primary'>Submit Accept DO Form</ButtonCustom>
+                    <ButtonCustom variant='tertiary'>Cancel</ButtonCustom>
                 </div>
             </div>
 

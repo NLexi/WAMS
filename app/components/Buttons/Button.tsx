@@ -5,7 +5,7 @@ type ButtonProps = {
     onClick?: React.ReactEventHandler
 }
 
-export function Button({ children, icon, variant, onClick }: ButtonProps) {
+export function ButtonCustom({ children, icon, variant, onClick }: ButtonProps) {
 
     const variants = {
         primary:
@@ -21,7 +21,7 @@ export function Button({ children, icon, variant, onClick }: ButtonProps) {
     }
 
     return (
-        <button onClick={onClick} className={`flex h-10 items-center border-2 border-transparent rounded-md px-4 font-medium font-inter transition-colors focus-visible:outline aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ${variants[variant]}`}>
+        <button onClick={onClick} className={`flex h-10 items-center rounded-md px-4 font-medium font-inter text-sm transition-colors focus-visible:outline aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ${variants[variant]}`}>
             <span className={`flex items-center justify-center ${icon && children ? 'mr-2' : ''}`}>
                 {icon}
             </span>

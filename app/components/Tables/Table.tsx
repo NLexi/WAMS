@@ -1,5 +1,5 @@
 import { IconDotsVertical } from "@tabler/icons-react"
-import { Button } from "../Buttons/Button";
+import { ButtonCustom } from "../Buttons/Button";
 
 type ContentData = Record<string, any>
 
@@ -28,7 +28,7 @@ export function Table({ headerItems, contentData = [] }: TableProps) {
                             {headerItems.map((header, headerIndex) => (
                                 <td key={headerIndex} className="px-4 py-2">
                                     {header === "Action" ? (
-                                        <Button icon={<IconDotsVertical/>} variant='tertiary'></Button>
+                                        <ButtonCustom icon={<IconDotsVertical/>} variant='tertiary'></ButtonCustom>
                                     ) : (
                                         content[header]
                                     )}

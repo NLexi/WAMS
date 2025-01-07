@@ -1,94 +1,125 @@
-'use client'
+import { Delivery, columns } from "./columns"
+import { DataTable } from "./data-table"
+import Navbar from "@/app/components/Navbars/Navbar"
+import { PageTabs } from "./page-tabs"
 
-import {
-    IconBuildingWarehouse,
-    IconCircleCheck,
-    IconWallet,
-    IconSearch,
-} from "@tabler/icons-react";
-import Navbar from "../components/Navbars/Navbar";
-import { Tab } from "../components/Tabs/Tab";
-import { useState } from "react";
-import { Table } from "../components/Tables/Table";
-import { Field } from "../components/Fields/Field";
+async function getData(): Promise<Delivery[]> {
+  return [
+    {
+      id: "728ed52f",
+      request_number: "RQ2405000270-I",
+      PO_number: "PO20240524-218-MKT",
+      requestor: "Dede Maulana",
+      department: "Marketing",
+      request_date: "24 - May - 2024",
+      status: "Approve"
+    },
+    {
+      id: "ae7832gf",
+      request_number: "RQ2405000271-II",
+      PO_number: "PO20240524-219-SALES",
+      requestor: "Alice Johnson",
+      department: "Sales",
+      request_date: "25 - May - 2024",
+      status: "On PO"
+    },
+    {
+      id: "c94be173",
+      request_number: "RQ2405000272-III",
+      PO_number: "PO20240524-220-ENG",
+      requestor: "Bob Smith",
+      department: "Engineering",
+      request_date: "26 - May - 2024",
+      status: "Complete PO"
+    },
+    {
+      id: "f172cd63",
+      request_number: "RQ2405000273-IV",
+      PO_number: "PO20240524-221-HR",
+      requestor: "Charlie Brown",
+      department: "Human Resources",
+      request_date: "27 - May - 2024",
+      status: "On Warehouse"
+    },
+    {
+      id: "c209ab29",
+      request_number: "RQ2405000274-V",
+      PO_number: "PO20240524-222-MKT",
+      requestor: "David Williams",
+      department: "Marketing",
+      request_date: "28 - May - 2024",
+      status: "Approve"
+    },
+    {
+      id: "c209ab30",
+      request_number: "RQ2405000275-VI",
+      PO_number: "PO20240524-112-MKT",
+      requestor: "William Johnson",
+      department: "Marketing",
+      request_date: "28 - May - 2024",
+      status: "Approve"
+    },
+    {
+      id: "c209ab31",
+      request_number: "RQ2405000276-VII",
+      PO_number: "PO20240524-372-HR",
+      requestor: "Sean Black",
+      department: "Human Resources",
+      request_date: "29 - May - 2024",
+      status: "On PO"
+    },
+    {
+      id: "a2039c12",
+      request_number: "RQ2405000277-VIII",
+      PO_number: "PO20240524-242-HR",
+      requestor: "Chris Lee",
+      department: "Human Resources",
+      request_date: "29 - May - 2024",
+      status: "On Warehouse"
+    },
+    {
+      id: "ae783i9a",
+      request_number: "RQ2405000278-IX",
+      PO_number: "PO20240524-271-SALES",
+      requestor: "Alice Jones",
+      department: "Sales",
+      request_date: "30 - May - 2024",
+      status: "Approve"
+    },
+    {
+      id: "ae783x4g",
+      request_number: "RQ2405000279-X",
+      PO_number: "PO20240524-900-MKT",
+      requestor: "Jonathan Setiawan",
+      department: "Marketing",
+      request_date: "30 - May - 2024",
+      status: "Approve"
+    },
+    {
+      id: "akasuwd9",
+      request_number: "RQ2405000280-XI",
+      PO_number: "PO20240524-764-MKT",
+      requestor: "Amin Sharif",
+      department: "Marketing",
+      request_date: "30 - May - 2024",
+      status: "On PO"
+    }
+  ]
+}
 
-export default function Page() {
+export default async function DemoPage() {
+  const data = await getData()
 
-    const [activeTab, setActiveTab] = useState<string>('requests');
-
-    const handleTabClick = (tab: string) => {
-        setActiveTab(tab);
-    };
-
-    const dummyData = [
-        {
-            'Request Number': 'REQ001',
-            'PO Number': 'PO1001',
-            'Requestor': 'Alice Johnson',
-            'Department': 'Engineering',
-            'Request Date': '2025-01-01',
-            'Status': 'Pending',
-            'Action': null,
-        },
-        {
-            'Request Number': 'REQ002',
-            'PO Number': 'PO1002',
-            'Requestor': 'Bob Smith',
-            'Department': 'Marketing',
-            'Request Date': '2025-01-02',
-            'Status': 'Approved',
-            'Action': null,
-        },
-        {
-            'Request Number': 'REQ003',
-            'PO Number': 'PO1003',
-            'Requestor': 'Charlie Brown',
-            'Department': 'Finance',
-            'Request Date': '2025-01-03',
-            'Status': 'Denied',
-            'Action': null,
-        },
-        {
-            'Request Number': 'REQ004',
-            'PO Number': 'PO1004',
-            'Requestor': 'David Williams',
-            'Department': 'Sales',
-            'Request Date': '2025-01-04',
-            'Status': 'Pending',
-            'Action': null,
-        },
-        {
-            'Request Number': 'REQ005',
-            'PO Number': 'PO1005',
-            'Requestor': 'Eva Green',
-            'Department': 'HR',
-            'Request Date': '2025-01-05',
-            'Status': 'Approved',
-            'Action': null,
-        },
-    ];
-
-    return (
-        <div>
-            <Navbar />
-            <div className="border-b border-gray-200 w-full">
-                <div className="container mx-auto flex flex-row">
-                    <Tab icon={<IconCircleCheck />} isActive={activeTab === 'requests'} onClick={() => handleTabClick('requests')}>Requests</Tab>
-                    <Tab icon={<IconWallet />} isActive={activeTab === 'purchase order'} onClick={() => handleTabClick('purchase order')}>Purchase Order</Tab>
-                    <Tab icon={<IconBuildingWarehouse />} isActive={activeTab === 'warehouse'} onClick={() => handleTabClick('warehouse')}>Warehouse</Tab>
-                </div>
-            </div>
-            <div className="flex justify-center mt-5">
-                <div className="w-[85vw]">
-                    <div className="font-outfit font-bold text-3xl m-auto p-2">
-                        Delivery Order List
-                    </div>
-                    <div className="m-auto flex justify-end p-3">
-                        <Field icon={<IconSearch />} placeholder='Search PO Number' color='stone-400' />
-                    </div>
-                    <Table headerItems={['Request Number', 'PO Number', 'Requestor', 'Department', 'Request Date', 'Status', 'Action']} contentData={dummyData}></Table>
-                </div>
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      <Navbar />
+      <PageTabs/>
+      <div className="container mx-auto py-5">
+        <h4 className="font-outfit font-bold text-[1.75rem] mx-auto px-2">
+          Delivery Order List
+        </h4>
+        <DataTable columns={columns} data={data} />
+      </div>
+    </div>
+  )
 }
