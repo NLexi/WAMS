@@ -72,7 +72,7 @@ const addrequestfilled = () => {
                                     <DialogTrigger>
                                         <Button variant='secondary' className="font-inter text-sm font-medium leading-5 text-[#3199E8] bg-[#F3F5F6] hover:opacity-70"><IconPlus />Add Item/service</Button>
                                     </DialogTrigger>
-                                    <DialogContent className="sm:max-w-[60%] sm:max-h-[80vh] overflow-auto">
+                                    <DialogContent className="sm:max-w-[60%] sm:max-h-[85vh] overflow-auto no-scrollbar">
                                         <DialogHeader>
                                             <DialogTitle className="font-semibold text-xl leading-6 font-outfit border-b-2 border-[#CDD4DA] py-4">General Information</DialogTitle>
                                         </DialogHeader>
@@ -103,7 +103,7 @@ const addrequestfilled = () => {
                                                 <Skeleton className="h-4 w-[200px]" />
                                             </div>
                                         </div>
-                                        <DialogFooter className="static">
+                                        <DialogFooter className="sticky bottom-[-23] right-0 border-t-2 bg-inherit border-[#E5E8EB] pt-4">
                                             <DialogClose asChild>
                                                 <ButtonCustom variant="tertiary">Cancel</ButtonCustom>
                                             </DialogClose>
