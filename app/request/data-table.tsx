@@ -6,7 +6,9 @@ import {
     getCoreRowModel,
     getFilteredRowModel,
     getPaginationRowModel,
+    getSortedRowModel,
     useReactTable,
+    SortingState,
 } from "@tanstack/react-table"
 
 import {
@@ -20,7 +22,9 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import React from "react"
-import { IconChevronLeft, IconChevronRight, IconSearch } from "@tabler/icons-react"
+import { IconChevronLeft, IconChevronRight, IconSearch, IconPlus } from "@tabler/icons-react"
+import { ButtonCustom } from "@/components/custom/Button"
+import { useRouter } from "next/navigation"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -31,25 +35,33 @@ export function DataTable<TData, TValue>({
     columns,
     data,
 }: DataTableProps<TData, TValue>) {
+    const [sorting, setSorting] = React.useState<SortingState>([])
 
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
-        getPaginationRowModel: getPaginationRowModel()
+        getPaginationRowModel: getPaginationRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        state: {
+            sorting,
+          },
     })
 
     return (
         <div>
-            <div className="mx-auto flex py-4 justify-end">
+            <div className="mx-auto flex py-4 pt-6 justify-between items-center">
+                <div className="font-semibold text-xl font-outfit">
+                    Requests by Item
+                </div>
                 <div className="flex item-center">
                     <IconSearch className="relative left-7 top-4 transform -translate-y-1/2 text-[#4A5863]" />
                     <Input
-                        placeholder="Search PO Number"
-                        value={(table.getColumn("PO_number")?.getFilterValue() as string) ?? ""}
+                        placeholder="Search Request Number"
+                        value={(table.getColumn("request_number")?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
-                            table.getColumn("PO_number")?.setFilterValue(event.target.value)
+                            table.getColumn("request_number")?.setFilterValue(event.target.value)
                         }
                         className="max-w-sm pl-9 border-[#CDD4DA] placeholder-[#B3BEC6] text-sm"
                     />

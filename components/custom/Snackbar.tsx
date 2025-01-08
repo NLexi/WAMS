@@ -90,8 +90,8 @@ export const SnackbarProvider = ({ children }: SnackbarProviderProps) => {
           {snackbar?.variant === 'info' && (<IconDownload className='text-info' />)}
           {snackbar?.variant === 'default' && (<IconDownload className='text-slate-500' />)}
           <div className="flex flex-col">
-            <div className="font-bold text-base font-inter">{snackbar?.message}</div>
-            <div className="font-light text-ss font-inter">meta text</div>
+            <div className="font-bold text-base">{snackbar?.message}</div>
+            <div className="font-light text-ss">meta text</div>
           </div>
         </div>
         <div className="w-px h-full bg-slate-500 mx-2" />

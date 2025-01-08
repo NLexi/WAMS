@@ -11,7 +11,7 @@ export function Tab({children, icon, isActive = false, onClick} : TabProps) {
             <div className={`${isActive ? 'text-[#354052]' : 'text-[#B3BEC6]'} group-hover:text-[#354052]`}>
                 {icon}
             </div>
-            <div className={`font-inter font-normal ${isActive ? 'text-[#354052]' : 'text-[#4A5863]'}`}>
+            <div className={`${isActive ? 'text-[#354052]' : 'text-[#4A5863]'}`}>
                 {children}
             </div>
         </button>

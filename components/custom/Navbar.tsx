@@ -28,7 +28,7 @@ export default function Navbar() {
                         <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center hover:cursor-pointer">
                             <IconUser size={20} className="text-button-blue hover:text-gray-900" />
                         </div>
-                        <span className="font-inter font-normal">Eko Widiyanto</span>
+                        <span>Eko Widiyanto</span>
                     </div>
                 </div>
             </div>

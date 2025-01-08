@@ -17,10 +17,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import React from "react"
-import { IconChevronLeft, IconChevronRight, IconSearch } from "@tabler/icons-react"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -41,22 +38,9 @@ export function DataTable<TData, TValue>({
     })
 
     return (
-        <div>
-            <div className="mx-auto flex py-4 justify-end">
-                <div className="flex item-center">
-                    <IconSearch className="relative left-7 top-4 transform -translate-y-1/2 text-[#4A5863]" />
-                    <Input
-                        placeholder="Search PO Number"
-                        value={(table.getColumn("PO_number")?.getFilterValue() as string) ?? ""}
-                        onChange={(event) =>
-                            table.getColumn("PO_number")?.setFilterValue(event.target.value)
-                        }
-                        className="max-w-sm pl-9 border-[#CDD4DA] placeholder-[#B3BEC6] text-sm"
-                    />
-                </div>
-            </div>
+        <div className="my-auto py-2">
             <Table>
-                <TableHeader className="border-b-2 border-[#8092A0] text-xs text-[#B3BEC6]">
+                <TableHeader className="border-b-2 border-[#B3BEC6] text-xs text-[#B3BEC6]">
                     {table.getHeaderGroups().map((headerGroup) => (
                         <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => {
@@ -98,10 +82,6 @@ export function DataTable<TData, TValue>({
                     )}
                 </TableBody>
             </Table>
-            <div className="mx-auto flex justify-end gap-2 p-2">
-                <Button onClick={() => table.previousPage()} variant="ghost"><IconChevronLeft /></Button>
-                <Button onClick={() => table.nextPage()} variant="ghost"><IconChevronRight /></Button>
-            </div>
         </div>
     )
 }

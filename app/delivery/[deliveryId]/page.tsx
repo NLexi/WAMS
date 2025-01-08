@@ -1,17 +1,15 @@
 "use client";
 
-import { ButtonCustom } from "@/app/components/Buttons/Button";
-import Navbar from "@/app/components/Navbars/Navbar";
+import { ButtonCustom } from "@/components/custom/Button";
+import Navbar from "@/components/custom/Navbar";
 import { IconArrowBack, IconTruckDelivery, IconX } from "@tabler/icons-react";
 import { useSearchParams } from "next/navigation";
 import React from "react";
-import { PageTabs } from "../page-tabs";
-import { useRouter } from "next/navigation";
+import { PageTabs } from "../../../components/custom/PageTabs";
 import { Table, TableHeader, TableRow, TableHead, TableCell, TableBody } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 
 const DeliveryDetails = () => {
-    const router = useRouter();
     const searchParams = useSearchParams();
     const deliveryData = {
         requestNumber: searchParams.get("requestNumber"),
@@ -31,11 +29,10 @@ const DeliveryDetails = () => {
                     <h4 className="text-[1.75rem] font-bold font-outfit leading-8">{deliveryData.requestNumber}</h4>
                     <div className="flex justify-between items-center">
                         <div className="flex gap-3">
-                            <ButtonCustom variant='secondary' icon={<IconArrowBack />} onClick={() => router.back()}>Back to list</ButtonCustom>
-                            <ButtonCustom variant='primary' icon={<IconTruckDelivery />}
-                                onClick={() => router.push(
-                                    `/delivery/createdo?requestNumber=${deliveryData.requestNumber}&poNumber=${deliveryData.poNumber}&requestor=${deliveryData.requestor}&department=${deliveryData.department}&requestDate=${deliveryData.requestDate}`
-                                )}>Create DO
+                            <ButtonCustom variant='secondary' icon={<IconArrowBack />} type="link" destination="/delivery">Back to list</ButtonCustom>
+                            <ButtonCustom variant='primary' icon={<IconTruckDelivery />} type="link" 
+                            destination={`/delivery/createdo?requestNumber=${deliveryData.requestNumber}&poNumber=${deliveryData.poNumber}&requestor=${deliveryData.requestor}&department=${deliveryData.department}&requestDate=${deliveryData.requestDate}`}
+                            >Create DO
                             </ButtonCustom>
                         </div>
                     </div>
@@ -43,36 +40,36 @@ const DeliveryDetails = () => {
 
                 {/* Information Section */}
                 <div className="container mx-auto flex flex-row py-4">
-                    <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 font-inter">
+                    <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4">
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">PO Number</p>
-                            <p className="text-base font-normal text-[#4A5863]">{deliveryData.poNumber}</p>
+                            <p className="text-base text-[#4A5863]">{deliveryData.poNumber}</p>
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">Requestor</p>
-                            <p className="text-base font-normal text-[#4A5863]">{deliveryData.requestor}</p>
+                            <p className="text-base text-[#4A5863]">{deliveryData.requestor}</p>
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">Department</p>
-                            <p className="text-base font-normal text-[#4A5863]">{deliveryData.department}</p>
+                            <p className="text-base text-[#4A5863]">{deliveryData.department}</p>
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">Request Date</p>
-                            <p className="text-base font-normal text-[#4A5863]">{deliveryData.requestDate}</p>
+                            <p className="text-base text-[#4A5863]">{deliveryData.requestDate}</p>
                         </div>
                     </div>
                     <div className="basis-3/4">
                         <div className="border-b-2 my-auto p-8">
-                            <p className="text-sm text-[#323C43] font-inter font-semibold">Status</p>
+                            <p className="text-sm text-[#323C43] font-semibold">Status</p>
                             <p className="text-[2rem] font-outfit font-bold py-1 text-[#323C43]">{deliveryData.status}</p>
-                            <p className="text-sm font-normal font-inter text-[#4A5863]">Updated 18 Mei 2024</p>
+                            <p className="text-sm text-[#4A5863]">Updated 18 Mei 2024</p>
                         </div>
                         <div className="mt-6 px-8">
-                            <h3 className="text-xl font-bold font-inter">Items Detail</h3>
+                            <h3 className="text-xl font-bold">Items Detail</h3>
                             <div className="mt-4">
                                 <Table>
-                                    <TableHeader className="border-b-2 border-[#8092A0] text-[#4A5863] font-inter font-semibold text-sm">
+                                    <TableHeader className="border-b-2 border-[#8092A0] text-[#4A5863] font-semibold text-sm">
                                         <TableRow>
                                             <TableHead>Item Name</TableHead>
                                             <TableHead>Quantity</TableHead>
@@ -82,7 +79,7 @@ const DeliveryDetails = () => {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody className="border-b-2 border-[#8092A0]">
-                                        <TableRow className="font-normal text-base text-[#4A5863] font-inter">
+                                        <TableRow className="text-base text-[#4A5863]">
                                             <TableCell className="text-wrap w-[30%]">3Coptics Juniper OEM QSFP+ LR4 40G DFB CWDM 10km</TableCell>
                                             <TableCell>4 Piece</TableCell>
                                             <TableCell className="text-wrap">JKT Distribution Customer</TableCell>

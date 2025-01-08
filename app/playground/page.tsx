@@ -1,11 +1,9 @@
 'use client'
 
-import { ButtonCustom } from '@/app/components/Buttons/Button';
-import { Field } from '../components/Fields/Field';
-import { Tab } from '../components/Tabs/Tab';
-import { useSnackbar } from '../components/Snackbars/Snackbar';
-import { Table } from '../components/Tables/Table';
-import Navbar from '../components/Navbars/Navbar';
+import { ButtonCustom } from '@/components/custom/Button';
+import { Tab } from '../../components/custom/Tab';
+import { useSnackbar } from '../../components/custom/Snackbar';
+import Navbar from '../../components/custom/Navbar';
 import Image from 'next/image';
 
 
@@ -107,7 +105,6 @@ export default function Page() {
             <div className="text-center">
                 <h1 className='font-inter font-bold mb-4'>Fields</h1>
                 <div className="p-6 rounded-lg">
-                    <Field icon={<IconSearch />} placeholder='Search by PO Number' color='stone-400' onChange={handleSearch} />
                 </div>
             </div>
 
@@ -151,11 +148,6 @@ export default function Page() {
             <div className='text-center'>
                 <h1 className='font-inter font-bold mb-4'>Testing Logos</h1>
                 <Image src="/Logo_WAMS.svg" alt="Icon" width={250} height={250} />
-            </div>
-
-            <div className='text-center'>
-                <h1 className='font-inter font-bold mb-4'>Table</h1>
-                <Table headerItems={['Request Number', 'PO Number', 'Requestor', 'Department', 'Request Date', 'Status', 'Action']} contentData={dummyData}></Table>
             </div>
         </div>
     );

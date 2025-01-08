@@ -1,7 +1,7 @@
 import { Delivery, columns } from "./columns"
 import { DataTable } from "./data-table"
-import Navbar from "@/app/components/Navbars/Navbar"
-import { PageTabs } from "./page-tabs"
+import Navbar from "@/components/custom/Navbar"
+import { PageTabs } from "../../components/custom/PageTabs"
 
 async function getData(): Promise<Delivery[]> {
   return [
@@ -107,7 +107,7 @@ async function getData(): Promise<Delivery[]> {
   ]
 }
 
-export default async function DemoPage() {
+export default async function DeliveryPage() {
   const data = await getData()
 
   return (

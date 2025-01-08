@@ -1,9 +1,8 @@
 'use client'
 
-import { Tab } from "@/app/components/Tabs/Tab"
+import { Tab } from "@/components/custom/Tab"
 import { IconCircleCheck, IconWallet, IconBuildingWarehouse } from "@tabler/icons-react"
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 export function PageTabs() {
 

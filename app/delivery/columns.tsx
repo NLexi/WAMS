@@ -1,7 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuShortcut, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { IconDotsVertical, IconEye, IconTruckDelivery } from "@tabler/icons-react"
 import { useRouter } from "next/navigation"
@@ -57,7 +57,7 @@ export const columns: ColumnDef<Delivery>[] = [
               <span className="sr-only">Open menu</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="font-inter text-sm font-normal">
+          <DropdownMenuContent align="end" className="text-sm">
             <DropdownMenuItem
               onClick={() =>
                 router.push(
@@ -65,7 +65,7 @@ export const columns: ColumnDef<Delivery>[] = [
                 )
               }
             >
-              <IconEye/>
+              <IconEye />
               View Detail
             </DropdownMenuItem>
             <DropdownMenuItem
