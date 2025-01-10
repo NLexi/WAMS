@@ -20,21 +20,21 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import React from "react"
-import { IconChevronLeft, IconChevronRight, IconSearch, IconBoxOff, IconWallet, IconCircleX, IconTrash } from "@tabler/icons-react"
+import { IconBoxOff, IconChevronLeft, IconChevronRight, IconCircleX, IconSearch, IconTrash, IconWallet } from "@tabler/icons-react"
 import { ButtonCustom } from "@/components/custom/Button"
-import { DeleteRequest } from "@/components/custom/RequestDelete"
 import { RequestReject } from "@/components/custom/RequestReject"
+import { DeleteRequest } from "@/components/custom/RequestDelete"
 
 
-interface DataTableProps<TData, TValue> {
+interface DataTableServiceProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
 }
 
-export function DataTable<TData, TValue>({
+export function DataTableService<TData, TValue>({
     columns,
     data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableServiceProps<TData, TValue>) {
 
     const table = useReactTable({
         data,
@@ -55,14 +55,14 @@ export function DataTable<TData, TValue>({
             <div>
                 <div className="mx-auto flex py-4 pt-6 justify-between items-center">
                     <div className="font-semibold text-xl font-outfit">
-                        Requests by Items
+                        Requests by Service
                     </div>
 
                 </div>
                 <div>
                     <div className="flex flex-col items-center justify-center w-full h-[20vh] border-2 border-[#E5E8EB] rounded-sm text-[#4A5863] font-semibold text-base gap-4">
                         <IconBoxOff />
-                        No Requests by Items yet.
+                        No Requests by Services yet.
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@ export function DataTable<TData, TValue>({
         <div>
             <div className="mx-auto flex py-4 pt-6 justify-between items-center">
                 <div className="font-semibold text-xl font-outfit">
-                    Requests by Item
+                    Requests by Service
                 </div>
                 <div className="flex item-center">
                     <IconSearch className="relative left-7 top-4 transform -translate-y-1/2 text-[#4A5863]" />
@@ -99,22 +99,26 @@ export function DataTable<TData, TValue>({
             }
             <Table>
                 <TableHeader className="border-b-2 border-[#8092A0] text-xs text-[#B3BEC6]">
-                    {table.getHeaderGroups().map((headerGroup) => (
-                        <TableRow key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => {
-                                return (
-                                    <TableHead key={header.id}>
-                                        {header.isPlaceholder
-                                            ? null
-                                            : flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext()
-                                            )}
-                                    </TableHead>
-                                )
-                            })}
-                        </TableRow>
-                    ))}
+                    {table.getRowModel().rows?.length ? (
+                        table.getHeaderGroups().map((headerGroup) => (
+                            <TableRow key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => {
+                                    return (
+                                        <TableHead key={header.id}>
+                                            {header.isPlaceholder
+                                                ? null
+                                                : flexRender(
+                                                    header.column.columnDef.header,
+                                                    header.getContext()
+                                                )}
+                                        </TableHead>
+                                    )
+                                })}
+                            </TableRow>
+                        ))
+                    ) : (
+                        <></>
+                    )}
                 </TableHeader>
                 <TableBody>
                     {table.getRowModel().rows?.length ? (
@@ -133,8 +137,8 @@ export function DataTable<TData, TValue>({
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={columns.length} className="h-24 text-center">
-                                No results.
+                            <TableCell colSpan={columns.length}>
+                                <></>
                             </TableCell>
                         </TableRow>
                     )}

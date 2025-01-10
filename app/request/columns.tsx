@@ -4,9 +4,10 @@ import { ColumnDef } from "@tanstack/react-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { IconCircleX, IconDotsVertical, IconTrash, IconWallet } from "@tabler/icons-react"
-import { DeleteRequest } from "@/components/custom/DeleteRequest"
+import { DeleteRequest } from "@/components/custom/RequestDelete"
 import { Checkbox } from "@/components/ui/checkbox"
-import { RejectRequest } from "@/components/custom/RejectRequest"
+import { RequestReject } from "@/components/custom/RequestReject"
+import Link from "next/link"
 
 export type Requests = {
   id: string
@@ -86,16 +87,18 @@ export const columns: ColumnDef<Requests>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="text-sm">
-            <DropdownMenuItem>
-              <IconWallet />
-              Create PO
-            </DropdownMenuItem>
-            <RejectRequest trigger={
+            <Link href={`/purchaseorder/createpo?requestNumber=${row.original.request_number}&requestor=${row.original.requestor}`}>
+              <DropdownMenuItem>
+                <IconWallet />
+                Create PO
+              </DropdownMenuItem>
+            </Link>
+            <RequestReject trigger={
               <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-              <IconCircleX />
-              Reject Request 
-            </DropdownMenuItem>
-            } requestNumber={row.original.request_number}/>
+                <IconCircleX />
+                Reject Request
+              </DropdownMenuItem>
+            } requestNumber={row.original.request_number} />
             <DeleteRequest trigger={
               <DropdownMenuItem className="text-[#CA2B17]" onSelect={(e) => e.preventDefault()}>
                 <IconTrash />

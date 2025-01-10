@@ -1,12 +1,12 @@
 'use client'
+
 import { ButtonCustom } from "@/components/custom/Button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-dropdown-menu"
-import { IconCalendar, IconInfoCircle, IconPlus } from "@tabler/icons-react"
+import { IconCalendar, IconFile, IconFileUpload, IconInfoCircle, IconPlus } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogHeader, DialogFooter } from "@/components/ui/dialog"
 import { DialogClose } from "@radix-ui/react-dialog"
-import { Skeleton } from "@/components/ui/skeleton"
 import {
     Form,
     FormControl,
@@ -16,6 +16,12 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import {
+    FileInput,
+    FileUploader,
+    FileUploaderContent,
+    FileUploaderItem
+} from "@/components/custom/FileUpload"
 import { useForm } from "react-hook-form"
 import {
     zodResolver
@@ -31,6 +37,7 @@ import {
 import { Calendar } from "@/components/ui/calendar"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 const formSchema = z.object({
     name_0843262112: z.string(),
@@ -47,14 +54,24 @@ const formSchema = z.object({
     name_8908564908: z.string(),
     name_1900702758: z.coerce.date(),
     name_6870145672: z.string(),
-    name_2722450973: z.string()
+    name_2722450973: z.string(),
+    name_5202057836: z.string()
 });
 
 type FormDialogProps = {
     trigger: React.ReactNode;
 }
 
-export function FormDialog({trigger}: FormDialogProps) {
+export function FormDialog({ trigger }: FormDialogProps) {
+
+    const [files, setFiles] = useState<File[] | null>(null);
+
+    const dropZoneConfig = {
+        maxFiles: 5,
+        maxSize: 1024 * 1024 * 4,
+        multiple: true,
+    };
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
 
@@ -74,7 +91,7 @@ export function FormDialog({trigger}: FormDialogProps) {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <DialogContent className="sm:max-w-[60%] sm:h-[85vh] ">
-                        <div className="flex flex-auto flex-col gap-4 overflow-scroll no-scrollbar p-4">
+                        <div className="flex flex-auto flex-col gap-4 overflow-scroll no-scrollbar pt-4 px-4">
                             <DialogHeader>
                                 <DialogTitle className="font-semibold text-xl leading-6 font-outfit border-b-2 border-[#CDD4DA] py-4">General Information</DialogTitle>
                             </DialogHeader>
@@ -87,13 +104,14 @@ export function FormDialog({trigger}: FormDialogProps) {
                                         name="name_0843262112"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className=" font-medium text-xs leading-5 text-[#323C43]">Initial Budget <span className="text-[#B3BEC6]    text-[0.688rem]">(optional)</span></FormLabel>
+                                                <FormLabel className=" font-medium text-xs leading-5 text-[#323C43]">Initial Budget <span className="text-[#B3BEC6] text-[0.688rem]">(optional)</span></FormLabel>
                                                 <FormControl>
                                                     <Input
                                                         placeholder="10.000.000"
-
                                                         type=""
-                                                        {...field} />
+                                                        {...field}
+                                                        value={field.value ?? ""}
+                                                    />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -158,7 +176,9 @@ export function FormDialog({trigger}: FormDialogProps) {
                                                 placeholder="PO Number"
 
                                                 type=""
-                                                {...field} />
+                                                {...field}
+                                                value={field.value ?? ""}
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -205,7 +225,7 @@ export function FormDialog({trigger}: FormDialogProps) {
                                                     <FormControl>
                                                         <RadioGroupItem value="item" />
                                                     </FormControl>
-                                                    <FormLabel className="">
+                                                    <FormLabel className="text-[#4A5863] font-semibold text-sm">
                                                         Item
                                                     </FormLabel>
                                                 </FormItem>
@@ -213,7 +233,7 @@ export function FormDialog({trigger}: FormDialogProps) {
                                                     <FormControl>
                                                         <RadioGroupItem value="service" />
                                                     </FormControl>
-                                                    <FormLabel className="">
+                                                    <FormLabel className="text-[#4A5863] font-semibold text-sm">
                                                         Service
                                                     </FormLabel>
                                                 </FormItem>
@@ -289,7 +309,9 @@ export function FormDialog({trigger}: FormDialogProps) {
                                                         placeholder="Input Amount"
 
                                                         type=""
-                                                        {...field} />
+                                                        {...field}
+                                                        value={field.value ?? ""}
+                                                    />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -418,6 +440,7 @@ export function FormDialog({trigger}: FormDialogProps) {
                                             <Textarea
                                                 placeholder="Describe additional information"
                                                 className="resize-none"
+                                                rows={3}
                                                 {...field}
                                             />
                                         </FormControl>
@@ -428,13 +451,53 @@ export function FormDialog({trigger}: FormDialogProps) {
                             <DialogHeader>
                                 <DialogTitle className="font-semibold text-xl leading-6 font-outfit border-b-2 border-[#CDD4DA] py-4">File Attachment  <span className="  text-xs">(optional)</span></DialogTitle>
                             </DialogHeader>
-                            <div className="flex flex-col space-y-3">
-                                <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-                                <div className="space-y-2">
-                                    <Skeleton className="h-4 w-[250px]" />
-                                    <Skeleton className="h-4 w-[200px]" />
-                                </div>
-                            </div>
+                            <FormField
+                                control={form.control}
+                                name="name_5202057836"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl className="flex flex-row">
+                                            <FileUploader
+                                                value={files}
+                                                onValueChange={setFiles}
+                                                dropzoneOptions={dropZoneConfig}
+                                                className="relative bg-background rounded-lg p-2"
+                                            >
+                                                <FileInput
+                                                    id="fileInput"
+                                                    className="bg-[#F3F5F6]"
+                                                >
+                                                    <div className="flex items-center justify-center flex-col py-10 w-full ">
+                                                        <IconFileUpload className="text-[#3199E8] h-10 w-10" strokeWidth={'1.25'} />
+                                                        <div className="mb-1 text-sm space-y-3 text-center pt-2">
+                                                            <span className="font-semibold">Drag and drop files to upload or</span>
+                                                            <div className="flex h-10 justify-center items-center w-[50%] m-auto bg-[#323C43] text-[white] rounded-sm">Browse Files</div>
+                                                            <p className="text-xs text-[#4A5863]">
+                                                                maximum file size may not exceed 5MB each
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </FileInput>
+                                                <div className="flex flex-col w-[75%]">
+                                                    <p className="font-bold text-base font-outfit pb-4 px-4">Attached Files</p>
+                                                    <FileUploaderContent>
+                                                        {files &&
+                                                            files.length > 0 &&
+                                                            files.map((file, i) => (
+                                                                <FileUploaderItem key={i} index={i} className="flex-auto border-b-2 border-[#E5E8EB] p-4 hover:bg-white hover:cursor-default">
+                                                                    <IconFile className="text-[#3199E8]" size={16} />
+                                                                    <span className="text-[#3199E8] text-md font-normal">{file.name}</span>
+                                                                </FileUploaderItem>
+                                                            ))}
+                                                    </FileUploaderContent>
+                                                </div>
+                                            </FileUploader>
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                         </div>
                         <DialogFooter className=" border-t-2 bg-inherit border-[#E5E8EB] pt-4">
                             <DialogClose asChild>

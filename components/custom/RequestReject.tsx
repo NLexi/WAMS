@@ -10,16 +10,13 @@ import {
 import { DialogClose } from "@radix-ui/react-dialog"
 import { ButtonCustom } from "./Button"
 import { Textarea } from "../ui/textarea"
-import { Label } from "@radix-ui/react-dropdown-menu"
-
-
 
 type DeleteRequestProps = {
     trigger: React.ReactNode
     requestNumber: string
 }
 
-export function RejectRequest({ trigger, requestNumber }: DeleteRequestProps) {
+export function RequestReject({ trigger, requestNumber }: DeleteRequestProps) {
     return (
         <Dialog>
             <DialogTrigger asChild>

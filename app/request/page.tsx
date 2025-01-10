@@ -1,10 +1,7 @@
-import { Requests, columns } from "./columns"
-import { DataTable } from "./data-table"
+import { Requests } from "./columns"
 import Navbar from "@/components/custom/Navbar"
 import { PageTabs } from "../../components/custom/PageTabs"
-import { ButtonCustom } from "@/components/custom/Button"
-import { IconPlus } from "@tabler/icons-react"
-import { RequestFilter } from "@/components/custom/RequestFilter"
+import RequestClient from "./requestclient"
 
 async function getData(): Promise<Requests[]> {
   return [
@@ -121,23 +118,20 @@ async function getData(): Promise<Requests[]> {
   ]
 }
 
+async function getData2(): Promise<Requests[]> {
+  return []
+}
+
 export default async function RequestPage() {
   const data = await getData()
+  const data2 = await getData2()
 
   return (
     <div>
       <Navbar />
-      <PageTabs />
+      <PageTabs initialTab="request"/>
       <div className="container mx-auto py-5">
-        <div className="flex justify-between items-center pb-2 text-black">
-          <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Request List</h4>
-          <ButtonCustom variant='primary' icon={<IconPlus />} type="link" destination='/request/addrequest'>Add New Request</ButtonCustom>
-        </div>
-        <div className="flex flex-row gap-4 pb-4 items-center justify-start">
-          <p>Category by:</p>
-          <RequestFilter />
-        </div>
-        <DataTable columns={columns} data={data} />
+        <RequestClient data={data} data2={data2}/>
       </div>
     </div>
   )

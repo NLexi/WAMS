@@ -9,29 +9,28 @@ import {
 } from "@/components/ui/dialog"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { ButtonCustom } from "./Button"
+import { Textarea } from "../ui/textarea"
 
-
-
-type DeleteRequestProps = {
+type SuccessRequestProps = {
     trigger: React.ReactNode
 }
 
-export function DeleteRequest({ trigger }: DeleteRequestProps) {
+export function RequestSuccess({ trigger }: SuccessRequestProps) {
     return (
         <Dialog>
             <DialogTrigger asChild>
                 {trigger}
             </DialogTrigger>
             <DialogContent className='flex flex-col m-auto items-center'>
-                <DialogHeader className="flex m-auto items-center py-[5%]">
-                    <DialogTitle className="font-semibold font-outfit text-xl leading-6">Delete Request Item</DialogTitle>
-                    <DialogDescription className="text-xs">
-                        Are you sure you want delete this request?
+                <DialogHeader className="flex m-auto items-center pt-[5%] pb-[2%]">
+                    <DialogTitle className="font-semibold font-outfit text-xl leading-6">Success</DialogTitle>
+                    <DialogDescription className="text-xs text-wrap w-[60%] text-center">
+                        Request item successfully created and sent to your approver to be processed.
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <DialogClose asChild>
-                        <ButtonCustom variant='danger'>                   Confirm Delete                   </ButtonCustom>
+                    <DialogClose type="submit" asChild>
+                        <ButtonCustom variant="primary" type="link" destination="/request">Close</ButtonCustom>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>

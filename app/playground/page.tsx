@@ -6,7 +6,6 @@ import { useSnackbar } from '../../components/custom/Snackbar';
 import Navbar from '../../components/custom/Navbar';
 import Image from 'next/image';
 
-
 import { 
     IconPlus, 
     IconTruckDelivery, 
@@ -16,71 +15,15 @@ import {
     IconCircleMinus, 
     IconTarget, 
     IconArrowBack, 
-    IconBell, 
-    IconSearch 
+    IconBell,
 } from '@tabler/icons-react';
-import { SetStateAction, useState } from "react";
 
 export default function Page() {
-    const [search, setSearch] = useState("");
-
     const showSnackbar = useSnackbar();
 
     const handleClick = (variant: 'success' | 'error' | 'default' | 'info') => {
         showSnackbar(`Context Text`, variant);
-    };
-
-    const handleSearch = (event: { target: { value: SetStateAction<string>; }; }) => {
-        setSearch(event.target.value);
-    };
-
-    const dummyData = [
-        {
-          'Request Number': 'REQ001',
-          'PO Number': 'PO1001',
-          'Requestor': 'Alice Johnson',
-          'Department': 'Engineering',
-          'Request Date': '2025-01-01',
-          'Status': 'Pending',
-          'Action' : null,
-        },
-        {
-          'Request Number': 'REQ002',
-          'PO Number': 'PO1002',
-          'Requestor': 'Bob Smith',
-          'Department': 'Marketing',
-          'Request Date': '2025-01-02',
-          'Status': 'Approved',
-          'Action' : null,
-        },
-        {
-          'Request Number': 'REQ003',
-          'PO Number': 'PO1003',
-          'Requestor': 'Charlie Brown',
-          'Department': 'Finance',
-          'Request Date': '2025-01-03',
-          'Status': 'Denied',
-          'Action' : null,
-        },
-        {
-          'Request Number': 'REQ004',
-          'PO Number': 'PO1004',
-          'Requestor': 'David Williams',
-          'Department': 'Sales',
-          'Request Date': '2025-01-04',
-          'Status': 'Pending',
-          'Action' : null,
-        },
-        {
-          'Request Number': 'REQ005',
-          'PO Number': 'PO1005',
-          'Requestor': 'Eva Green',
-          'Department': 'HR',
-          'Request Date': '2025-01-05',
-          'Status': 'Approved',
-          'Action' : null,
-        },
-      ];     
+    };   
 
     return (
         <div className="h-screen w-screen grid grid-cols-1 place-items-center gap-8">

@@ -113,7 +113,7 @@ export default async function DeliveryPage() {
   return (
     <div>
       <Navbar />
-      <PageTabs/>
+      <PageTabs initialTab="request" />
       <div className="container mx-auto py-5">
         <h4 className="font-outfit font-bold text-[1.75rem] mx-auto px-2">
           Delivery Order List

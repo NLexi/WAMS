@@ -23,7 +23,7 @@ const DeliveryDetails = () => {
     return (
         <div>
             <Navbar />
-            <PageTabs />
+            <PageTabs initialTab="request"/>
             <div className="container mx-auto py-6">
                 <div className="flex justify-between items-center pb-2 text-black">
                     <h4 className="text-[1.75rem] font-bold font-outfit leading-8">{deliveryData.requestNumber}</h4>

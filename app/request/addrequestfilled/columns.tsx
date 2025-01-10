@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { IconDotsVertical, IconEdit, IconTrash } from "@tabler/icons-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { FormDialog } from "@/components/custom/FormDialog"
-import { DeleteRequest } from "@/components/custom/DeleteRequest"
+import { DeleteRequest } from "@/components/custom/RequestDelete"
 
 export type AddRequest = {
   id: string

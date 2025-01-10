@@ -8,6 +8,7 @@ import { FormDialog } from "@/components/custom/FormDialog"
 import { AddRequest, columns } from "./columns"
 import { DataTable } from "./data-table"
 import { Button } from "@/components/ui/button"
+import { RequestSuccess } from "@/components/custom/RequestSuccess"
 
 async function getData(): Promise<AddRequest[]> {
   return [
@@ -74,7 +75,7 @@ export default async function AddRequestFilled() {
     return (
         <div>
             <Navbar />
-            <PageTabs />
+            <PageTabs initialTab="request"/>
             <div className="container mx-auto">
                 <div className="py-6">
                     <div className="flex justify-start items-center pb-2 text-black">
@@ -137,8 +138,8 @@ export default async function AddRequestFilled() {
                         <div className="flex flex-row justify-end mx-auto py-4 border-[#CDD4DA] border-t-2">
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-3">
-                                    <ButtonCustom variant='tertiary'>Cancel</ButtonCustom>
-                                    <ButtonCustom variant='primary' icon={<IconArrowRight />}>Submit Request</ButtonCustom>
+                                    <ButtonCustom variant='tertiary' type="link" destination="/request">Cancel</ButtonCustom>
+                                    <RequestSuccess trigger={<ButtonCustom variant='primary' icon={<IconArrowRight />}>Submit Request</ButtonCustom>}/>
                                 </div>
                             </div>
                         </div>
