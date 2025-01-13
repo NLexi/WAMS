@@ -1,5 +1,3 @@
-'use state'
-
 import { ButtonCustom } from "@/components/custom/Button"
 import Navbar from "@/components/custom/Navbar"
 import { PageTabs } from "@/components/custom/PageTabs"
@@ -11,7 +9,7 @@ const addrequest = () => {
     
     return (
         <div>
-            <Navbar />
+            <Navbar username='Eko Widiyanto'/>
             <PageTabs initialTab="request"/>
             <div className="container mx-auto py-6">
                 <div className="flex justify-start items-center pb-2 text-black">

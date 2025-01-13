@@ -74,7 +74,7 @@ export default async function AddRequestFilled() {
 
     return (
         <div>
-            <Navbar />
+            <Navbar username='Eko Widiyanto'/>
             <PageTabs initialTab="request"/>
             <div className="container mx-auto">
                 <div className="py-6">

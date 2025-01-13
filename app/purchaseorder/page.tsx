@@ -4,7 +4,7 @@ import { PageTabs } from "@/components/custom/PageTabs";
 export default function POPage() {
     return (
         <div>
-            <Navbar />
+            <Navbar username='Eko Widiyanto'/>
             <PageTabs initialTab="purchaseorder"/>
 
             INI PO PAGE

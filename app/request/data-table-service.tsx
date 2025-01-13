@@ -137,8 +137,8 @@ export function DataTableService<TData, TValue>({
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={columns.length}>
-                                <></>
+                            <TableCell colSpan={columns.length} className="h-24 text-center text-[#4A5863] font-semibold text-base">
+                                Service Not Found
                             </TableCell>
                         </TableRow>
                     )}

@@ -128,7 +128,7 @@ export default async function RequestPage() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar username='Eko Widiyanto'/>
       <PageTabs initialTab="request"/>
       <div className="container mx-auto py-5">
         <RequestClient data={data} data2={data2}/>

@@ -20,7 +20,7 @@ export function PageTabs({initialTab}: PageTabsProps) {
     };
 
     return (
-        <div className="border-b border-gray-200 w-full">
+        <div className="border-b border-[#CDD4DA] w-full">
             <div className="mx-auto flex flex-row px-2">
                 <Tab icon={<IconCircleCheck />} isActive={activeTab === 'request'} onClick={() => handleTabClick('request')}>Requests</Tab>
                 <Tab icon={<IconWallet />} isActive={activeTab === 'purchaseorder'} onClick={() => handleTabClick('purchaseorder')}>Purchase Order</Tab>

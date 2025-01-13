@@ -27,7 +27,7 @@ export default function Page() {
 
     return (
         <div className="h-screen w-screen grid grid-cols-1 place-items-center gap-8">
-            <Navbar/>
+            <Navbar username='Eko Widiyanto'/>
             <div className="text-center">
                 <h1 className='font-inter font-bold mb-4'>Buttons</h1>
                 <div className="grid grid-cols-4 gap-5 p-5 text-white rounded-lg">

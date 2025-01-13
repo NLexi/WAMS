@@ -19,7 +19,7 @@ export default function CreatePOPage() {
 
     return (
         <div>
-            <Navbar />
+            <Navbar username='Eko Widiyanto'/>
             <PageTabs initialTab="purchaseorder"/>
             <div className="container mx-auto py-6">
                 <div className="flex justify-start items-center pb-2 text-black">

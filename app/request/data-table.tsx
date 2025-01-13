@@ -133,8 +133,8 @@ export function DataTable<TData, TValue>({
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={columns.length} className="h-24 text-center">
-                                No results.
+                            <TableCell colSpan={columns.length} className="h-24 text-center text-[#4A5863] font-semibold text-base">
+                                Item Not Found
                             </TableCell>
                         </TableRow>
                     )}

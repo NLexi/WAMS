@@ -1,3 +1,23 @@
+'use client'
+
+import { ButtonCustom } from "@/components/custom/Button"
+import { FileUploader, FileUploaderContent, FileInput, FileUploaderItem } from "@/components/custom/FileUpload";
+import { IconArrowBack, IconFileUpload, IconFile } from "@tabler/icons-react"
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useState } from "react";
+
+export default function FileUploadDocumentation() {
+
+    const [files, setFiles] = useState<File[] | null>(null);
+
+    const dropZoneConfig = {
+        maxFiles: 5,
+        maxSize: 1024 * 1024 * 4,
+        multiple: true,
+    };
+
+    const codestring = `
 "use client";
 
 import { Input } from "@/components/ui/input";
@@ -178,7 +198,7 @@ export const FileUploader = forwardRef<
           for (let i = 0; i < rejectedFiles.length; i++) {
             if (rejectedFiles[i].errors[0]?.code === "file-too-large") {
               toast.error(
-                `File is too large. Max size is ${maxSize / 1024 / 1024}MB`,
+                \`File is too large. Max size is \${maxSize / 1024 / 1024}MB\`,
               );
               break;
             }
@@ -325,20 +345,20 @@ export const FileInput = forwardRef<
     <div
       ref={ref}
       {...props}
-      className={`relative w-full ${
+      className={\`relative w-full \${
         isLOF ? "opacity-50 cursor-not-allowed " : "cursor-pointer "
-      }`}
+      }\`}
     >
       <div
         className={cn(
-          `w-full rounded-lg duration-300 ease-in-out
-         ${
+          \`w-full rounded-lg duration-300 ease-in-out
+         \${
            dropzoneState.isDragAccept
              ? "border-green-500"
              : dropzoneState.isDragReject || isFileTooBig
                ? "border-red-500"
                : "border-gray-300"
-         }`,
+         }\`,
           className,
         )}
         {...rootProps}
@@ -349,10 +369,128 @@ export const FileInput = forwardRef<
         ref={dropzoneState.inputRef}
         disabled={isLOF}
         {...dropzoneState.getInputProps()}
-        className={`${isLOF ? "cursor-not-allowed" : ""}`}
+        className={\`\${isLOF ? "cursor-not-allowed" : ""}\`}
       />
     </div>
   );
 });
 
 FileInput.displayName = "FileInput";
+
+    `
+
+    const codestringtutorial = `
+    <FileUploader
+        value={files}
+        onValueChange={setFiles}
+        dropzoneOptions={dropZoneConfig}
+        className="relative bg-background rounded-lg p-2 max-w-[40%]"
+    >
+        <FileInput
+            id="fileInput"
+            className="bg-[#F3F5F6]"
+        >
+            <div className="flex items-center justify-center flex-col py-10 w-full ">
+                <IconFileUpload className="text-[#3199E8] h-10 w-10" strokeWidth={'1.25'} />
+                <div className="mb-1 text-sm space-y-3 text-center pt-2">
+                    <span className="font-semibold">Drag and drop files to upload or</span>
+                    <div className="flex h-10 justify-center items-center w-[50%] m-auto bg-[#323C43] text-[white] rounded-sm">Browse Files</div>
+                    <p className="text-xs text-[#4A5863]">
+                        maximum file size may not exceed 5MB each
+                    </p>
+                </div>
+            </div>
+        </FileInput>
+        <div className="flex flex-col">
+            <FileUploaderContent>
+                {files &&
+                    files.length > 0 &&
+                    files.map((file, i) => (
+                        <FileUploaderItem key={i} index={i} className="flex-auto border-b-2 border-[#E5E8EB] p-4 hover:bg-white hover:cursor-default">
+                            <IconFile className="text-[#3199E8]" size={16} />
+                            <span className="text-[#3199E8] text-md font-normal">{file.name}</span>
+                        </FileUploaderItem>
+                    ))}
+            </FileUploaderContent>
+        </div>
+    </FileUploader>
+    `
+
+    return (
+        <div>
+            <div className="container mx-auto pt-12">
+                <div className="flex justify-between items-center pb-2 text-black">
+                    <h4 className="text-[1.75rem] font-bold font-outfit leading-8">File Upload Documentation</h4>
+                    <div className="flex justify-between items-center">
+                        <div className="flex gap-3">
+                            <ButtonCustom variant='secondary' icon={<IconArrowBack />} type="link" destination="/documentation">Back to component list</ButtonCustom>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex py-4">
+                    <div className="my-auto px-8 py-4">
+                        <p className="text-base text-[#323C43] font-semibold font-outfit">Component Code</p>
+                        <SyntaxHighlighter
+                            language="javascript"
+                            style={dracula}
+                            wrapLongLines
+                            customStyle={{ padding: '8px', borderRadius: '8px', width: '75rem', maxHeight: '23rem' }}
+                        >
+                            {codestring}
+                        </SyntaxHighlighter>
+                    </div>
+                </div>
+                <div className="flex py-4">
+                    <div className="my-auto px-8 py-4">
+                        <p className="text-base text-[#323C43] font-semibold font-outfit">How To Use</p>
+                        <SyntaxHighlighter
+                            language="javascript"
+                            style={dracula}
+                            wrapLongLines
+                            customStyle={{ padding: '8px', borderRadius: '8px', maxWidth: '75rem', maxHeight: '23rem' }}
+                        >
+                            {codestringtutorial}
+                        </SyntaxHighlighter>
+                    </div>
+                </div>
+                <div className="flex flex-row gap-4 m-auto p-2 bg-slate-50 rounded-md shadow items-center justify-center">
+                    <p className="font-bold font-outfit text-2xl text-[#323C43]">Demo: </p>
+                    <FileUploader
+                        value={files}
+                        onValueChange={setFiles}
+                        dropzoneOptions={dropZoneConfig}
+                        className="relative bg-background rounded-lg p-2 max-w-[40%]"
+                    >
+                        <FileInput
+                            id="fileInput"
+                            className="bg-[#F3F5F6]"
+                        >
+                            <div className="flex items-center justify-center flex-col py-10 w-full ">
+                                <IconFileUpload className="text-[#3199E8] h-10 w-10" strokeWidth={'1.25'} />
+                                <div className="mb-1 text-sm space-y-3 text-center pt-2">
+                                    <span className="font-semibold">Drag and drop files to upload or</span>
+                                    <div className="flex h-10 justify-center items-center w-[50%] m-auto bg-[#323C43] text-[white] rounded-sm">Browse Files</div>
+                                    <p className="text-xs text-[#4A5863]">
+                                        maximum file size may not exceed 5MB each
+                                    </p>
+                                </div>
+                            </div>
+                        </FileInput>
+                        <div className="flex flex-col">
+                            <FileUploaderContent>
+                                {files &&
+                                    files.length > 0 &&
+                                    files.map((file, i) => (
+                                        <FileUploaderItem key={i} index={i} className="flex-auto border-b-2 border-[#E5E8EB] p-4 hover:bg-white hover:cursor-default">
+                                            <IconFile className="text-[#3199E8]" size={16} />
+                                            <span className="text-[#3199E8] text-md font-normal">{file.name}</span>
+                                        </FileUploaderItem>
+                                    ))}
+                            </FileUploaderContent>
+                        </div>
+                    </FileUploader>
+                </div>
+            </div>
+        </div>
+    )
+};

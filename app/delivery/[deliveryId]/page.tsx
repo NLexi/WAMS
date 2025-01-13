@@ -22,7 +22,7 @@ const DeliveryDetails = () => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar username='Eko Widiyanto'/>
             <PageTabs initialTab="request"/>
             <div className="container mx-auto py-6">
                 <div className="flex justify-between items-center pb-2 text-black">

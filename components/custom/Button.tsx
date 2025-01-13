@@ -10,7 +10,13 @@ type ButtonProps = {
 }
 
 export function ButtonCustom({ children, icon, variant, type="button", destination="#", onClick }: ButtonProps) {
-    
+
+    const buttonContent = (
+        <>
+          {icon && <span className={`flex items-center justify-center ${icon && children ? 'mr-2' : ''}`}>{icon}</span>}
+          {children}
+        </>
+      );
 
     const variants = {
         primary:
@@ -26,21 +32,15 @@ export function ButtonCustom({ children, icon, variant, type="button", destinati
     }
     if (type === "button") {
         return (
-            <button onClick={onClick} className={`flex h-10 items-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ${variants[variant]}`}>
-                <span className={`flex items-center justify-center ${icon && children ? 'mr-2' : ''}`}>
-                    {icon}
-                </span>
-                {children}
+            <button onClick={onClick} className={`flex h-10 items-center justify-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ${variants[variant]}`}>
+                {buttonContent}
             </button>
         );
     }
     else {
         return (
-            <Link href={destination} onClick={onClick} className={`flex h-10 items-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ${variants[variant]}`}>
-                <span className={`flex items-center justify-center ${icon && children ? 'mr-2' : ''}`}>
-                    {icon}
-                </span>
-                {children}
+            <Link href={destination} onClick={onClick} className={`flex h-10 items-center justify-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ${variants[variant]}`}>
+                {buttonContent}
             </Link>
         )
     }

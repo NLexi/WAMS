@@ -45,25 +45,24 @@ export function DataTable<TData, TValue>({
             <div>
                 <div className="flex flex-col items-center justify-center w-full h-[20vh] border-2 border-[#E5E8EB] rounded-sm text-[#4A5863] font-semibold text-base gap-4">
                     <IconBoxOff />
-                    No Delivery Order yet.
+                    No Accept PO yet.
                 </div>
             </div>
-
         )
     }
 
     return (
         <div>
-            <div className="mx-auto flex py-4 justify-end">
+            <div className="mx-auto flex py-4 justify-start">
                 <div className="flex item-center">
-                    <IconSearch className="relative left-7 top-4 transform -translate-y-1/2 text-[#4A5863]" />
+                    <IconSearch className="relative left-4 top-4 transform -translate-y-1/2 text-[#4A5863]" />
                     <Input
                         placeholder="Search PO Number"
                         value={(table.getColumn("PO_number")?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
                             table.getColumn("PO_number")?.setFilterValue(event.target.value)
                         }
-                        className="max-w-sm pl-9 border-[#CDD4DA] placeholder-[#B3BEC6] text-sm"
+                        className="max-w-sm pl-9 border-[#CDD4DA] placeholder-[#B3BEC6] text-sm -ml-4"
                     />
                 </div>
             </div>
@@ -103,8 +102,8 @@ export function DataTable<TData, TValue>({
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={columns.length} className="h-24 text-center">
-                                No results.
+                            <TableCell colSpan={columns.length} className="h-24 text-center text-[#4A5863] font-semibold text-base">
+                                No results
                             </TableCell>
                         </TableRow>
                     )}
