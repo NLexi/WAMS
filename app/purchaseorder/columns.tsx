@@ -68,14 +68,14 @@ export const columns: ColumnDef<PurchaseOrder>[] = [
               <IconEye />
               View Detail
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            {row.original.status != "Approved" ? <DropdownMenuItem>
               <IconTarget />
               Accept PO
-            </DropdownMenuItem>
-            <DropdownMenuItem>
+            </DropdownMenuItem> : <></>}
+            {row.original.status == "On Vendor" ? <DropdownMenuItem>
               <IconBallpen />
               Request for Approval
-            </DropdownMenuItem>
+            </DropdownMenuItem> : <></>}
             <DropdownMenuItem>
               <IconFileDownload />
               Download
