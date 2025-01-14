@@ -1,11 +1,9 @@
 'use client'
 
-import { ButtonCustom } from "@/components/custom/Button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-dropdown-menu"
-import { IconCalendar, IconFile, IconFileUpload, IconInfoCircle, IconPlus } from "@tabler/icons-react"
+import { IconCalendar, IconFile, IconFileUpload, IconInfoCircle } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogHeader, DialogFooter, DialogClose } from "@/components/ui/dialog"
 import {
     Form,
     FormControl,
@@ -57,11 +55,7 @@ const formSchema = z.object({
     name_5202057836: z.string()
 });
 
-type FormDialogProps = {
-    trigger: React.ReactNode;
-}
-
-export function FormDialog({ trigger }: FormDialogProps) {
+export function FormNormal({}) {
 
     const [files, setFiles] = useState<File[] | null>(null);
 
@@ -86,14 +80,9 @@ export function FormDialog({ trigger }: FormDialogProps) {
 
 
     return (
-        <Dialog>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <DialogContent className="sm:max-w-[60%] sm:h-[85vh] ">
                         <div className="flex flex-auto flex-col gap-4 overflow-scroll no-scrollbar pt-4 px-4">
-                            <DialogHeader>
-                                <DialogTitle className="font-semibold text-xl leading-6 font-outfit border-b-2 border-[#CDD4DA] py-4">General Information</DialogTitle>
-                            </DialogHeader>
                             <div className="grid grid-cols-12 gap-4 items-center">
 
                                 <div className="col-span-9">
@@ -205,9 +194,6 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     </FormItem>
                                 )}
                             />
-                            <DialogHeader>
-                                <DialogTitle className="font-semibold text-xl leading-6 font-outfit border-b-2 border-[#CDD4DA] py-4">Detail Information</DialogTitle>
-                            </DialogHeader>
                             <FormField
                                 control={form.control}
                                 name="name_7612042378"
@@ -447,9 +433,6 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     </FormItem>
                                 )}
                             />
-                            <DialogHeader>
-                                <DialogTitle className="font-semibold text-xl leading-6 font-outfit border-b-2 border-[#CDD4DA] py-4">File Attachment  <span className="  text-xs">(optional)</span></DialogTitle>
-                            </DialogHeader>
                             <FormField
                                 control={form.control}
                                 name="name_5202057836"
@@ -498,20 +481,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                 )}
                             />
                         </div>
-                        <DialogFooter className=" border-t-2 bg-inherit border-[#E5E8EB] pt-4">
-                            <DialogClose asChild>
-                                <ButtonCustom variant="tertiary">Cancel</ButtonCustom>
-                            </DialogClose>
-                            <DialogClose asChild>
-                                <Button type="submit" variant='default' className="rounded-md bg-button-blue text-white hover:bg-blue-300 active:bg-blue-600 focus-visible:outline-slate-500"><IconPlus />Submit Item</Button>
-                            </DialogClose>
-                        </DialogFooter>
-                    </DialogContent>
                 </form>
             </Form>
-            <DialogTrigger asChild>
-                {trigger}
-            </DialogTrigger>
-        </Dialog>
     );
 }
