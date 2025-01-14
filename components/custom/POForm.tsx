@@ -55,7 +55,7 @@ const formSchema = z.object({
     name_5202057836: z.string()
 });
 
-export function FormNormal({}) {
+export function POForm({}) {
 
     const [files, setFiles] = useState<File[] | null>(null);
 

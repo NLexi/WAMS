@@ -11,7 +11,7 @@ export default function SnackbarDocumentation() {
     const showSnackbar = useSnackbar();
 
     const handleClick = (variant: 'success' | 'error' | 'default' | 'info') => {
-        showSnackbar(`Context Text`, variant);
+        showSnackbar(`Message`, variant);
     };
 
     const codestring = `
@@ -32,7 +32,7 @@ import { IoMdClose } from 'react-icons/io';
 
 type SnackbarVariant = 'success' | 'error' | 'default' | 'info';
 
-type SnackbarContextType = (message: string, variant?: SnackbarVariant) => void;
+type SnackbarContextType = (message: string, variant?: SnackbarVariant, subMessage?: string) => void;
 
 type SnackbarProviderProps = {
   children: ReactNode;
@@ -41,6 +41,7 @@ type SnackbarProviderProps = {
 type SnackbarState = {
   show: boolean;
   message: string;
+  subMessage?: string;
   variant: SnackbarVariant;
 };
 
@@ -62,8 +63,8 @@ export const SnackbarProvider = ({ children }: SnackbarProviderProps) => {
   };
 
   const showSnackbar = useCallback<SnackbarContextType>(
-    (message, variant = 'success') => {
-      setSnackbar({ show: true, message, variant });
+    (message, variant = 'success', subMessage = 'meta text') => {
+      setSnackbar({ show: true, message, subMessage, variant });
 
       if (timerRef.current) {
         clearTimeout(timerRef.current);
@@ -90,7 +91,7 @@ export const SnackbarProvider = ({ children }: SnackbarProviderProps) => {
       {children}
       <div
         className={classNames(
-          'transition-transform bottom-8 font-medium right-8 fixed flex justify-between gap-2 items-center shadow-md min-h-[54px] max-w-[50vw] px-4 py-2 rounded-md min-w-[300px] text-sm truncate whitespace-nowrap bg-transparent border-l-4 border-[1px]',
+          'transition-transform bottom-8 font-medium right-8 fixed flex justify-between gap-2 items-center shadow-md min-h-[54px] max-w-[50vw] px-4 py-2 rounded-md min-w-[300px] text-sm truncate whitespace-nowrap bg-white border-l-4 border-[1px]',
           {
             ['border-approve']: snackbar?.variant === 'success',
             ['border-reject']: snackbar?.variant === 'error',
@@ -108,7 +109,7 @@ export const SnackbarProvider = ({ children }: SnackbarProviderProps) => {
           {snackbar?.variant === 'default' && (<IconDownload className='text-slate-500' />)}
           <div className="flex flex-col">
             <div className="font-bold text-base">{snackbar?.message}</div>
-            <div className="font-light text-ss">meta text</div>
+            <div className="font-light text-ss">{snackbar?.subMessage}</div>
           </div>
         </div>
         <div className="w-px h-full bg-slate-500 mx-2" />
@@ -150,8 +151,16 @@ export const useSnackbar = (): SnackbarContextType => {
                         <p className="text-base text-[#4A5863]">success, error, default, info</p>
                     </div>
                     <div className="flex flex-col gap-2">
+                        <p className="text-sm font-semibold text-[#323C43]">Message</p>
+                        <p className="text-base text-[#4A5863]">main message with bold font</p>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <p className="text-sm font-semibold text-[#323C43]">SubMessage</p>
+                        <p className="text-base text-[#4A5863]">smaller message with normal font</p>
+                    </div>
+                    <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">How to use</p>
-                        <p className="text-base text-[#4A5863]">Call useSnackBar(<span className="font-bold">[variant]</span>) on an onClick component</p>
+                        <p className="text-base text-[#4A5863]">call useSnackBar(<span className="font-bold">[variant]</span>) on an onClick component</p>
                     </div>
                 </div>
                 <div className="basis-3/4">

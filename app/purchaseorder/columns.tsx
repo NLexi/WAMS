@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { IconBallpen, IconDotsVertical, IconEye, IconFileDownload, IconTarget } from "@tabler/icons-react"
+import { useRouter } from "next/navigation"
 
 export type PurchaseOrder = {
   id: string
@@ -54,6 +55,7 @@ export const columns: ColumnDef<PurchaseOrder>[] = [
     enableHiding: false,
     header: "Action",
     cell: ({ row }) => {
+      const router = useRouter();
 
       return (
         <DropdownMenu>
@@ -64,7 +66,7 @@ export const columns: ColumnDef<PurchaseOrder>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="text-sm">
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push(`/purchaseorder/${row.original.id}?poNumber=${row.original.PO_number}&vendor=${row.original.vendor}&requestor=${row.original.requestor}&createdAt=${row.original.created_at}&totalAmount=${row.original.total_amount}&status=${row.original.status}`)}>
               <IconEye />
               View Detail
             </DropdownMenuItem>
