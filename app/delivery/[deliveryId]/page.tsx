@@ -37,10 +37,8 @@ const DeliveryDetails = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Information Section */}
                 <div className="container mx-auto flex flex-row py-4">
-                    <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4">
+                    <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 pr-2">
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">PO Number</p>
                             <p className="text-base text-[#4A5863]">{deliveryData.poNumber}</p>

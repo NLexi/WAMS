@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { IconDotsVertical, IconEye, IconTarget } from "@tabler/icons-react"
+import { useRouter } from "next/navigation"
 
 export type Warehouse = {
   id: string
@@ -45,6 +46,7 @@ export const columns: ColumnDef<Warehouse>[] = [
     enableHiding: false,
     header: "Action",
     cell: ({ row }) => {
+      const router = useRouter();
 
       return (
         <DropdownMenu>
@@ -55,7 +57,7 @@ export const columns: ColumnDef<Warehouse>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="text-sm">
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push(`/warehouse/${row.original.id}?poNumber=${row.original.PO_number}&requestor=${row.original.requestor}&vendor=${row.original.vendor}&maxReceiveDate=${row.original.max_received_date}&modifiedDate=${row.original.modified_date}&status=${row.original.status}`)}>
               <IconEye />
               View Detail
             </DropdownMenuItem>

@@ -26,10 +26,10 @@ const PurchaseOrderDetails = () => {
 
     const router = useRouter();
     const showSnackbar = useSnackbar();
-    
-        const handleClick = (variant: 'success' | 'error' | 'default' | 'info', message: string, subMessage: string) => {
-            showSnackbar(message, variant, subMessage);
-        }; 
+
+    const handleClick = (variant: 'success' | 'error' | 'default' | 'info', message: string, subMessage: string) => {
+        showSnackbar(message, variant, subMessage);
+    };
 
     return (
         <div>
@@ -75,7 +75,7 @@ const PurchaseOrderDetails = () => {
                     </div>
                 </div>
                 <div className="container mx-auto flex flex-row">
-                    <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 pr-1">
+                    <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[75vh] py-4 pr-2">
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">PO Number</p>
                             <p className="text-base text-[#4A5863]">{purchaseOrderData.poNumber}</p>
@@ -87,6 +87,9 @@ const PurchaseOrderDetails = () => {
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">Vendor</p>
                             <p className="text-base text-[#4A5863]">{purchaseOrderData.vendor}</p>
+                            <p className="text-base text-[#4A5863]">Sedayu Square Jl. Kamal Raya Outer Ring Road Blok L 35 Cengkareng, Jakarta Barat - 11730</p>
+                            <p className="text-base text-[#4A5863]">(021) 58357085</p>
+                            <p className="text-base text-[#4A5863]">example@email.co.id</p>
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">File attachment</p>
@@ -112,7 +115,7 @@ const PurchaseOrderDetails = () => {
                                             <TableHead className="text-right">Net Amount</TableHead>
                                         </TableRow>
                                     </TableHeader>
-                                    <TableBody className="border-b-2 border-[#8092A0]">
+                                    <TableBody className="border-b border-[#8092A0]">
                                         <TableRow className="text-base text-[#4A5863]">
                                             <TableCell className="text-wrap w-[30%]">3Coptics Juniper OEM QSFP+ LR4 40G DFB CWDM 10km</TableCell>
                                             <TableCell>1 Pcs</TableCell>
@@ -124,7 +127,7 @@ const PurchaseOrderDetails = () => {
                                 </Table>
                             </div>
                             <div className="container flex flex-row justify-end items-end py-8 text-base text-[#4A5863]">
-                                <div className="flex flex-col border-2 border-[#8092A0] rounded-sm p-4">
+                                <div className="flex flex-col border border-[#8092A0] rounded-sm p-4">
                                     <div className="flex flex-row justify-between gap-[12vw]">
                                         <div className="flex flex-col items-start gap-2">
                                             <p>Subtotal</p>
@@ -144,7 +147,7 @@ const PurchaseOrderDetails = () => {
                                         <div className="flex flex-col items-start">
                                             <p>Total Amount</p>
                                         </div>
-                                        <div className="flex flex-col items-end">
+                                        <div className="flex flex-col items-end font-semibold text-base text-black">
                                             <p>Rp 3.196.800</p>
                                         </div>
                                     </div>

@@ -5,6 +5,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Button } from "@/components/ui/button"
 import { IconBallpen, IconDotsVertical, IconEye, IconFileDownload, IconTarget } from "@tabler/icons-react"
 import { useRouter } from "next/navigation"
+import { useSnackbar } from "@/components/custom/Snackbar"
+import { PORequestSuccess } from "@/components/custom/PORequestSuccess"
 
 export type PurchaseOrder = {
   id: string
@@ -56,6 +58,11 @@ export const columns: ColumnDef<PurchaseOrder>[] = [
     header: "Action",
     cell: ({ row }) => {
       const router = useRouter();
+      const showSnackbar = useSnackbar();
+
+      const handleClick = (variant: 'success' | 'error' | 'default' | 'info', message: string, subMessage: string) => {
+        showSnackbar(message, variant, subMessage);
+      };
 
       return (
         <DropdownMenu>
@@ -70,15 +77,19 @@ export const columns: ColumnDef<PurchaseOrder>[] = [
               <IconEye />
               View Detail
             </DropdownMenuItem>
-            {row.original.status != "Approved" ? <DropdownMenuItem>
-              <IconTarget />
-              Accept PO
-            </DropdownMenuItem> : <></>}
-            {row.original.status == "On Vendor" ? <DropdownMenuItem>
-              <IconBallpen />
-              Request for Approval
-            </DropdownMenuItem> : <></>}
-            <DropdownMenuItem>
+            {row.original.status != "Approved" ?
+              <DropdownMenuItem>
+                <IconTarget />
+                Accept PO
+              </DropdownMenuItem> : <></>}
+            {row.original.status == "On Vendor" ?
+              <PORequestSuccess trigger={
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                  <IconBallpen />
+                  Request for Approval
+                </DropdownMenuItem>
+              } /> : <></>}
+            <DropdownMenuItem onClick={() => handleClick('success', row.original.PO_number, 'Successfully downloaded')}>
               <IconFileDownload />
               Download
             </DropdownMenuItem>

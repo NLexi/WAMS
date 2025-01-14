@@ -30,7 +30,7 @@ type SnackbarState = {
 
 const SnackbarContext = createContext<SnackbarContextType | undefined>(undefined);
 
-const SNACKBAR_TIMER = 10000;
+const SNACKBAR_TIMER = 5000;
 
 export const SnackbarProvider = ({ children }: SnackbarProviderProps) => {
   const [snackbar, setSnackbar] = useState<SnackbarState>({
