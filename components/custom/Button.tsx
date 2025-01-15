@@ -7,9 +7,9 @@ type ButtonProps = {
     type?: "link" | "button"
     destination?: string
     onClick?: React.ReactEventHandler
-}
+} & React.HTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export function ButtonCustom({ children, icon, variant, type="button", destination="#", onClick }: ButtonProps) {
+export function ButtonCustom({ children, icon, variant, type="button", destination="#", onClick, ...rest }: ButtonProps) {
 
     const buttonContent = (
         <>
