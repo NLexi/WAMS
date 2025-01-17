@@ -2,7 +2,7 @@
 
 import { ButtonCustom } from "@/components/custom/Button"
 import { Input } from "@/components/ui/input"
-import { IconArrowRight, IconCalendar, IconFile, IconFileUpload, IconInfoCircle } from "@tabler/icons-react"
+import { IconArrowRight, IconCalendar, IconFileUpload, IconInfoCircle } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -23,8 +23,6 @@ import {
     zodResolver
 } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import {
     format
@@ -33,7 +31,7 @@ import { Calendar } from "@/components/ui/calendar"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { Textarea } from "../ui/textarea"
-import { BASTDialog } from "./BASTDialog"
+import { ConfirmationDialog } from "./ConfirmationModal"
 
 const formSchema = z.object({
     request_code: z.string({message: "Please input the BAST Number"}),
@@ -219,7 +217,7 @@ export function FormBAST() {
                     <div className="flex justify-between items-center">
                         <div className="flex gap-3">
                             <ButtonCustom variant='tertiary' type="link" destination="/request">Cancel</ButtonCustom>
-                            <BASTDialog trigger={<Button type="submit" className="flex h-10 items-center justify-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline bg-[#3199E8] text-white hover:bg-[#83C1F1] active:bg-blue-600 focus-visible:outline-slate-500"><IconArrowRight /> Submit Form</Button>}/>
+                            <ConfirmationDialog trigger={<Button type="submit" className="flex h-10 items-center justify-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline bg-[#3199E8] text-white hover:bg-[#83C1F1] active:bg-blue-600 focus-visible:outline-slate-500"><IconArrowRight /> Submit Form</Button>}/>
                         </div>
                     </div>
                 </div>
