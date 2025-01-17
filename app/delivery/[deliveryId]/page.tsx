@@ -47,7 +47,6 @@ const DeliveryDetails = () => {
                             <p className="text-sm font-semibold text-[#323C43]">Requestor</p>
                             <p className="text-base text-[#4A5863]">{deliveryData.requestor}</p>
                         </div>
-
                         <div className="flex flex-col gap-2">
                             <p className="text-sm font-semibold text-[#323C43]">Department</p>
                             <p className="text-base text-[#4A5863]">{deliveryData.department}</p>

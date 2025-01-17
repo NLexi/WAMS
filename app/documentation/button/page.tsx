@@ -57,7 +57,7 @@ export function ButtonCustom({ children, icon, variant, type="button", destinati
     `
 
     return (
-        <div className="container mx-auto py-12">
+        <div className="container mx-auto py-12 p-4">
             <div className="flex justify-between items-center pb-2 text-black">
                 <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Button Documentation</h4>
                 <div className="flex justify-between items-center">
@@ -74,7 +74,7 @@ export function ButtonCustom({ children, icon, variant, type="button", destinati
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Variant</p>
-                        <p className="text-base text-[#4A5863]">primary, secondary, tertiary, positive, danger</p>
+                        <p className="text-base text-[#4A5863]">primary, secondary, tertiary, positive, danger     </p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">OnClick</p>

@@ -46,7 +46,7 @@ npm ERR! this command with --force or --legacy-peer-deps
 npm ERR! to accept an incorrect (and potentially broken) dependency resolution.`
 
     return (
-        <div className="container mx-auto py-12">
+        <div className="container mx-auto py-12 p-4">
             <div className="flex justify-between items-center pb-2 text-black">
                 <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Resource Documentation</h4>
                 <div className="flex justify-between items-center">
@@ -71,7 +71,7 @@ npm ERR! to accept an incorrect (and potentially broken) dependency resolution.`
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Input Validation</p>
-                        <p className="text-base text-[#4A5863]"><a href="https://www.npmjs.com/package/zod" className="font-bold">zod</a> is used for input validation in forms</p>
+                        <p className="text-base text-[#4A5863]"><a href="https://www.npmjs.com/package/zod" className="font-bold">zod</a> is used for input validation in forms     </p>
                     </div>
                 </div>
                 <div className="basis-3/4">

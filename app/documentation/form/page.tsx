@@ -528,7 +528,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
     `
 
     return (
-        <div className="container mx-auto py-12">
+        <div className="container mx-auto py-12 p-4">
             <div className="flex justify-between items-center pb-2 text-black">
                 <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Form Documentation</h4>
                 <div className="flex justify-between items-center">
@@ -545,7 +545,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Form Types</p>
-                        <p className="text-base text-[#4A5863]">normal input, textarea, select, file upload, date picker, radio group, checkbox</p>
+                        <p className="text-base text-[#4A5863]">normal input, textarea, select, file upload, date picker, radio group, checkbox     </p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Form Layout</p>

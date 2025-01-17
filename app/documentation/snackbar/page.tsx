@@ -135,7 +135,7 @@ export const useSnackbar = (): SnackbarContextType => {
     `
 
     return (
-        <div className="container mx-auto py-12">
+        <div className="container mx-auto py-12 p-4">
             <div className="flex justify-between items-center pb-2 text-black">
                 <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Snackbar Documentation</h4>
                 <div className="flex justify-between items-center">
@@ -148,7 +148,7 @@ export const useSnackbar = (): SnackbarContextType => {
                 <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 pr-1">
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Variant</p>
-                        <p className="text-base text-[#4A5863]">success, error, default, info</p>
+                        <p className="text-base text-[#4A5863]">success, error, default, info     </p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Message</p>

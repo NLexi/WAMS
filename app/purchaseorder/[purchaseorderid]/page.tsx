@@ -24,8 +24,21 @@ const PurchaseOrderDetails = () => {
         status: searchParams.get("status"),
     };
 
+    const formatCurrency = (value:number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            minimumFractionDigits: 0,
+        }).format(value);
+    };
+
     const router = useRouter();
     const showSnackbar = useSnackbar();
+    const subTotal = 2880000;
+    const discount = 0;
+    const vat = subTotal * 11 / 100;
+    const shipping = 0;
+    const totalAmount = subTotal - discount + vat + shipping;
 
     const handleClick = (variant: 'success' | 'error' | 'default' | 'info', message: string, subMessage: string) => {
         showSnackbar(message, variant, subMessage);
@@ -54,7 +67,7 @@ const PurchaseOrderDetails = () => {
                                     <IconArrowBack />
                                     Back to List
                                 </DropdownMenuItem>
-                                <DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => router.push(`/purchaseorder/editpo?poNumber=${purchaseOrderData.poNumber}`)}>
                                     <IconEdit />
                                     Edit PO
                                 </DropdownMenuItem>
@@ -119,9 +132,9 @@ const PurchaseOrderDetails = () => {
                                         <TableRow className="text-base text-[#4A5863]">
                                             <TableCell className="text-wrap w-[30%]">3Coptics Juniper OEM QSFP+ LR4 40G DFB CWDM 10km</TableCell>
                                             <TableCell>1 Pcs</TableCell>
-                                            <TableCell className="text-wrap">2.880.000</TableCell>
+                                            <TableCell className="text-wrap">{formatCurrency(subTotal)}</TableCell>
                                             <TableCell>0</TableCell>
-                                            <TableCell className="text-right">Rp 2.880.000</TableCell>
+                                            <TableCell className="text-right">{formatCurrency(subTotal)}</TableCell>
                                         </TableRow>
                                     </TableBody>
                                 </Table>
@@ -136,10 +149,10 @@ const PurchaseOrderDetails = () => {
                                             <p>Shipping & Handling</p>
                                         </div>
                                         <div className="flex flex-col items-end gap-2">
-                                            <p>Rp 2.880.000</p>
-                                            <p>Rp 0</p>
-                                            <p>Rp 316.800</p>
-                                            <p>Rp 0</p>
+                                            <p>{formatCurrency(subTotal)}</p>
+                                            <p>{formatCurrency(discount)}</p>
+                                            <p>{formatCurrency(vat)}</p>
+                                            <p>{formatCurrency(shipping)}</p>
                                         </div>
                                     </div>
                                     <div className="border-t border-[#8092A0] my-2"></div>
@@ -148,7 +161,7 @@ const PurchaseOrderDetails = () => {
                                             <p>Total Amount</p>
                                         </div>
                                         <div className="flex flex-col items-end font-semibold text-base text-black">
-                                            <p>Rp 3.196.800</p>
+                                            <p>{formatCurrency(totalAmount)}</p>
                                         </div>
                                     </div>
                                 </div>

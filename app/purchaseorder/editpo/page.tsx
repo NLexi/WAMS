@@ -10,8 +10,7 @@ export default function CreatePOPage() {
     const searchparams = useSearchParams();
 
     const podata = {
-        requestNumber: searchparams.get('requestNumber'),
-        requestor: searchparams.get('requestor'),
+        poNumber: searchparams.get('poNumber')
     }
 
     return (
@@ -20,7 +19,7 @@ export default function CreatePOPage() {
             <PageTabs initialTab="purchaseorder"/>
             <div className="container mx-auto py-6">
                 <div className="flex justify-start items-center pb-2 text-black">
-                    <h1 className="text-[1.75rem] font-bold font-outfit leading-8">Create New PO</h1>
+                    <h1 className="text-[1.75rem] font-bold font-outfit leading-8">Edit: {podata.poNumber}</h1>
                 </div>
             </div>
             <div className="container mx-auto flex flex-row py-4">
@@ -39,7 +38,7 @@ export default function CreatePOPage() {
                     </div>
                 </div>
                 <div className="basis-3/4">
-                    <FormNormal type="Create"/>
+                    <FormNormal type="Update"/>
                 </div>
             </div>
         </div>

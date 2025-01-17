@@ -47,40 +47,38 @@ export default function Navbar({ username }:NavbarProps) {
     `
 
     return (
-        <div>
-            <div className="container mx-auto pt-12">
-                <div className="flex justify-between items-center pb-2 text-black">
-                    <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Navbar Documentation</h4>
-                    <div className="flex justify-between items-center">
-                        <div className="flex gap-3">
-                            <ButtonCustom variant='secondary' icon={<IconArrowBack />} type="link" destination="/documentation">Back to component list</ButtonCustom>
-                        </div>
+        <div className="container mx-auto pt-12 p-4 overflow-x-hidden">
+            <div className="flex justify-between items-center pb-2 text-black pr-8">
+                <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Navbar Documentation</h4>
+                <div className="flex justify-between items-center">
+                    <div className="flex gap-3">
+                        <ButtonCustom variant='secondary' icon={<IconArrowBack />} type="link" destination="/documentation">Back to component list</ButtonCustom>
                     </div>
                 </div>
-                <div className="flex py-4">
-                    <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 pr-1">
-                        <div className="flex flex-col gap-2">
-                            <p className="text-sm font-semibold text-[#323C43]">Username</p>
-                            <p className="text-base text-[#4A5863]">name shown on navbar</p>
-                        </div>
-                    </div>
-                    <div className="basis-3/4">
-                        <div className="my-auto px-8 py-4">
-                            <p className="text-base text-[#323C43] font-semibold font-outfit">Component Code</p>
-                            <SyntaxHighlighter
-                                language="javascript"
-                                style={dracula}
-                                wrapLongLines
-                                customStyle={{ padding: '8px', borderRadius: '8px', maxWidth: '50rem', maxHeight: '23rem' }}
-                            >
-                                {codestring}
-                            </SyntaxHighlighter>
-                        </div>
-                    </div>
-                </div>
-                <p className="font-bold font-outfit text-2xl text-[#323C43]">Demo: </p>
             </div>
-            <div className=" bg-slate-50 py-2">
+            <div className="flex py-4">
+                <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 pr-1">
+                    <div className="flex flex-col gap-2">
+                        <p className="text-sm font-semibold text-[#323C43]">Username</p>
+                        <p className="text-base text-[#4A5863]">name shown on navbar         </p>
+                    </div>
+                </div>
+                <div className="basis-3/4">
+                    <div className="my-auto px-8 py-4">
+                        <p className="text-base text-[#323C43] font-semibold font-outfit">Component Code</p>
+                        <SyntaxHighlighter
+                            language="javascript"
+                            style={dracula}
+                            wrapLongLines
+                            customStyle={{ padding: '8px', borderRadius: '8px', maxWidth: '50rem', maxHeight: '23rem' }}
+                        >
+                            {codestring}
+                        </SyntaxHighlighter>
+                    </div>
+                </div>
+            </div>
+            <p className="font-bold font-outfit text-2xl text-[#323C43]">Demo: </p>
+            <div className=" bg-slate-50 py-2 w-screen">
                 <Navbar username="Username" />
             </div>
         </div>

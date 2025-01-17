@@ -29,7 +29,7 @@ export function Tab({children, icon, isActive = false, onClick} : TabProps) {
     `
 
     return (
-        <div className="container mx-auto py-12">
+        <div className="container mx-auto pt-12 p-4">
             <div className="flex justify-between items-center pb-2 text-black">
                 <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Tab Documentation</h4>
                 <div className="flex justify-between items-center">
@@ -46,11 +46,15 @@ export function Tab({children, icon, isActive = false, onClick} : TabProps) {
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">IsActive</p>
-                        <p className="text-base text-[#4A5863]">boolean value to determine if it is in its active state or not</p>
+                        <p className="text-base text-[#4A5863]">boolean value to determine if it is in its active state or not     </p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">OnClick</p>
                         <p className="text-base text-[#4A5863]">an on click event handler</p>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <p className="text-sm font-semibold text-[#323C43]">Extension Component</p>
+                        <p className="text-base text-[#4A5863]">PageTabs Component</p>
                     </div>
                 </div>
                 <div className="basis-3/4">
