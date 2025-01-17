@@ -391,7 +391,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                                     variant={"outline"}
                                                     className={cn(
                                                         "flex items-center justify-between pr-3 pl-3 text-left   ",
-                                                        form.formState.errors.target_location ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input",
+                                                        form.formState.errors.target_delivery_date ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input",
                                                         !field.value && "text-muted-foreground"
                                                     )}
                                                 >
@@ -429,7 +429,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     <FormLabel className=" font-medium text-xs leading-5 text-[#323C43]">Select Requestor</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
-                                            <SelectTrigger className={form.formState.errors.target_location ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}>
+                                            <SelectTrigger className={form.formState.errors.select_requestor ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}>
                                                 <SelectValue placeholder="--Select--" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -452,7 +452,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     <FormControl>
                                         <Textarea
                                             placeholder="Describe additional information"
-                                            className={`resize-none ${form.formState.errors.target_location ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}`}
+                                            className={`resize-none ${form.formState.errors.note ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}`}
                                             rows={3}
                                             {...field}
                                         />

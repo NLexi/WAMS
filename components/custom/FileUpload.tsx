@@ -302,7 +302,7 @@ export const FileUploaderItem = forwardRef<
         type="button"
         className={cn(
           "absolute",
-          direction === "rtl" ? "top-1 left-1" : "top-1 right-1",
+          direction === "rtl" ? "top-1 left-1" : "top-1 right-2 bottom-1",
         )}
         onClick={() => removeFileFromSet(index)}
       >
