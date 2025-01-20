@@ -43,7 +43,7 @@ const RequestApproval = () => {
                         <div className="flex flex-row justify-between gap-2">
                             <Dialog>
                                 <DialogTrigger asChild>
-                                    <ButtonCustom variant="danger" icon={<IconCircleMinus />}>Reject</ButtonCustom>
+                                    <ButtonCustom variant="primary" color="red" icon={<IconCircleMinus />}>Reject</ButtonCustom>
                                 </DialogTrigger>
                                 <DialogContent className='flex flex-col m-auto items-center'>
                                     <DialogHeader className="flex m-auto items-center pt-[5%]">
@@ -58,12 +58,12 @@ const RequestApproval = () => {
                                     </div>
                                     <DialogFooter>
                                         <DialogClose type="submit" asChild>
-                                            <ButtonCustom variant='danger' type="link" destination="/approval/reject">                   Submit Reject                   </ButtonCustom>
+                                            <ButtonCustom variant='primary' color="red" type="link" destination="/approval/reject">                   Submit Reject                   </ButtonCustom>
                                         </DialogClose>
                                     </DialogFooter>
                                 </DialogContent>
                             </Dialog>
-                            <ButtonCustom variant="positive" icon={<IconCircleCheck />} type="link" destination="/approval/approve">Approve</ButtonCustom>
+                            <ButtonCustom variant="primary" color="green" icon={<IconCircleCheck />} type="link" destination="/approval/approve">Approve</ButtonCustom>
                         </div>
                     </div>
                 </div>

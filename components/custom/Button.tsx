@@ -3,13 +3,14 @@ import Link from "next/link";
 type ButtonProps = {
     children?: React.ReactNode;
     icon?: React.ReactNode;
-    variant: "primary" | "secondary" | "tertiary" | "positive" | "danger"
+    variant: "primary" | "secondary" | "tertiary"
     type?: "link" | "button"
+    color?: "blue" | "red" | "green"
     destination?: string
     onClick?: React.ReactEventHandler
 } & React.HTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export function ButtonCustom({ children, icon, variant, type = "button", destination = "#", onClick, className = "", ...rest }: ButtonProps) {
+export function ButtonCustom({ children, icon, variant, type = "button", color = "blue", destination = "#", onClick, className = "", ...rest }: ButtonProps) {
 
     const buttonContent = (
         <>
@@ -18,17 +19,26 @@ export function ButtonCustom({ children, icon, variant, type = "button", destina
         </>
     );
 
+    let palette = { light: "", dark_bg: "", dark_text: "", dark_border: "" };
+
+    switch (color) {
+        case "green":
+            palette = { light: "hover:bg-[#C0F0C8]", dark_bg: "bg-[#17CA1D]", dark_border:"border-[#17CA1D]", dark_text: "text-[#17CA1D]" };
+            break;
+        case "red":
+            palette = { light: "hover:bg-[#EBBAA7]", dark_bg: "bg-[#CA2B17]", dark_border:"border-[#CA2B17]", dark_text: "text-[#CA2B17]" };
+            break;
+        default:
+            palette = { light: "hover:bg-[#D6EAFA]", dark_bg: "bg-[#3199E8]", dark_border:"border-[#3199E8]", dark_text: "text-[#3199E8]" };
+    }
+
     const variants = {
         primary:
-            "bg-[#3199E8] text-white hover:bg-[#83C1F1] active:bg-blue-600 focus-visible:outline-slate-500",
+            `${palette.dark_bg} text-white ${palette.light} focus-visible:outline-slate-500`,
         secondary:
-            "text-[#3199E8] border-2 border-solid border-[#3199E8] bg-white hover:bg-[#D6EAFA] active:bg-blue-600",
+            `${palette.dark_text} border-2 border-solid ${palette.dark_border} bg-white ${palette.light}`,
         tertiary:
-            "justify-center text-[#3199E8] bg-white px-4 font-medium transition-colors hover:bg-[#D6EAFA] active:border-2 active:border-double active:border-[#3199E8]",
-        positive:
-            "bg-[#17CA1D] px-4 font-medium text-white transition-colors hover:bg-green-300 active:opacity-70",
-        danger:
-            "bg-[#CA2B17] px-4 font-medium text-white transition-colors hover:bg-red-500 active:opacity-70",
+            `justify-center ${palette.dark_text} bg-white px-4 font-medium transition-colors ${palette.light} active:border-2 active:border-double active:${palette.dark_border}`,
     }
     if (type === "button") {
         return (

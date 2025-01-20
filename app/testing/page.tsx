@@ -1,4 +1,3 @@
-import { ButtonRevamp } from "@/components/custom/ButtonRevamp";
 import { ConfirmationDialog } from "@/components/custom/ConfirmationModal";
 import LogHistory from "@/components/custom/LogHistory";
 import Navbar from "@/components/custom/Navbar";
@@ -13,7 +12,6 @@ export default function Page() {
             <Navbar username="Eko Widiyanto" />
             <PageTabs initialTab="request" />
             <div className="container flex flex-col m-auto p-4 justify-center items-center gap-4">
-                <ConfirmationDialog trigger={<ButtonRevamp variant="secondary" color="green">modal</ButtonRevamp>} />
                 <LogHistory />
                 <div className="border-2 border-[#CA2B17] bg-[#FADAD6] container flex flex-col m-auto p-5 w-[50%] h-[20%] gap-1">
                     <p className="text-[#CA2B17] font-semibold font-outfit text-xl">Reason</p>
