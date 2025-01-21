@@ -41,18 +41,18 @@ import { useState } from "react"
 const formSchema = z.object({
     initial_budget: z.coerce.number({ message: "Please input an integer" }).nonnegative(),
     unit: z.string({ message: "Please select a unit" }),
-    checkbox_order: z.boolean({message: "Please check this box" }),
+    checkbox_order: z.boolean({ message: "Please check this box" }),
     previous_po_number: z.string({ message: "Please input a PO number" }),
     form_type: z.string({ message: "Please select a form type" }),
     request_type: z.string({ message: "Please select a request type" }),
-    filter_tag: z.string({message: "Please input a filter tag" }),
+    filter_tag: z.string({ message: "Please input a filter tag" }),
     item_select: z.string({ message: "Please select an item" }),
     amount_request: z.coerce.number({ message: "Please input amount of item" }).nonnegative(),
-    set_buy: z.boolean({message: "Please check this box"}),
+    set_buy: z.boolean({ message: "Please check this box" }),
     target_location: z.string({ message: "Please select target location" }),
-    target_delivery_date: z.coerce.date({message: "Please add target delivery date"}),
+    target_delivery_date: z.coerce.date({ message: "Please add target delivery date" }),
     select_requestor: z.string({ message: "Please select which requestor" }),
-    note: z.string({message: "Please add a note"}),
+    note: z.string({ message: "Please add a note" }),
     file_upload: z.array(
         z.custom<File>((file) => {
             const isValidType = ["image/jpeg", "image.jpg", "image/png", "application/pdf", "image/svg+xml"].includes(file.type);
@@ -94,7 +94,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values);
     }
-    
+
     return (
         <Form {...form}>
             <Dialog>
@@ -119,7 +119,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                                     placeholder="10.000.000"
                                                     {...field}
                                                     value={field.value ?? ""}
-                                                    className={form.formState.errors.initial_budget ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}
+                                                    className={form.formState.errors.initial_budget ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -138,7 +138,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                             <FormLabel className=" font-medium text-xs leading-5 text-[#323C43]">Unit</FormLabel>
                                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
-                                                    <SelectTrigger className={form.formState.errors.unit ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}>
+                                                    <SelectTrigger className={form.formState.errors.unit ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}>
                                                         <SelectValue placeholder="--Select--" className="placeholder-[#4A5863]" />
                                                     </SelectTrigger>
                                                 </FormControl>
@@ -163,7 +163,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                         <Checkbox
                                             checked={field.value}
                                             onCheckedChange={field.onChange}
-                                            className={form.formState.errors.checkbox_order ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}
+                                            className={form.formState.errors.checkbox_order ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}
                                         />
                                     </FormControl>
                                     <div className="space-y-1 leading-none">
@@ -188,7 +188,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                             type=""
                                             {...field}
                                             value={field.value ?? ""}
-                                            className={form.formState.errors.previous_po_number ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}
+                                            className={form.formState.errors.previous_po_number ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -204,7 +204,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     <FormLabel className="flex flex-row items-center gap-1  font-medium text-xs leading-5 text-[#323C43]">Choose Request Form Type <IconInfoCircle className="text-[#177CCA] w-3.5 h-3.5" /></FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
-                                            <SelectTrigger className={form.formState.errors.form_type ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}>
+                                            <SelectTrigger className={form.formState.errors.form_type ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}>
                                                 <SelectValue placeholder="--Select--" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -234,7 +234,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                         >
                                             <FormItem className="flex items-center space-x-3 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="item" className={form.formState.errors.request_type ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}/>
+                                                    <RadioGroupItem value="item" className={form.formState.errors.request_type ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"} />
                                                 </FormControl>
                                                 <FormLabel className="text-[#4A5863] font-semibold text-sm">
                                                     Item
@@ -242,7 +242,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                             </FormItem>
                                             <FormItem className="flex items-center space-x-3 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="service" className={form.formState.errors.request_type ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}/>
+                                                    <RadioGroupItem value="service" className={form.formState.errors.request_type ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"} />
                                                 </FormControl>
                                                 <FormLabel className="text-[#4A5863] font-semibold text-sm">
                                                     Service
@@ -262,7 +262,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     <FormLabel className=" font-medium text-xs leading-5 text-[#323C43]">Filter by Tagging <span className="text-[#B3BEC6]    text-[0.688rem]">(optional)</span></FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
-                                            <SelectTrigger className={form.formState.errors.filter_tag ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}>
+                                            <SelectTrigger className={form.formState.errors.filter_tag ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}>
                                                 <SelectValue placeholder="--Select--" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -284,7 +284,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     <FormLabel className=" font-medium text-xs leading-5 text-[#323C43]">Select Item</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
-                                            <SelectTrigger className={form.formState.errors.item_select ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}>
+                                            <SelectTrigger className={form.formState.errors.item_select ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}>
                                                 <SelectValue placeholder="--Select--" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -322,7 +322,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                                     type=""
                                                     {...field}
                                                     value={field.value ?? ""}
-                                                    className={form.formState.errors.amount_request ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}
+                                                    className={form.formState.errors.amount_request ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -342,7 +342,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                                 <Checkbox
                                                     checked={field.value}
                                                     onCheckedChange={field.onChange}
-                                                    className={`w-6 h-6 p-0 rounded-none ${form.formState.errors.set_buy ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}`}
+                                                    className={`w-6 h-6 p-0 rounded-none ${form.formState.errors.set_buy ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}`}
                                                 />
                                             </FormControl>
                                             <div className="space-y-1 leading-none">
@@ -364,7 +364,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     <FormLabel className=" font-medium text-xs leading-5 text-[#323C43]">Target Location</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
-                                            <SelectTrigger className={form.formState.errors.target_location ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}>
+                                            <SelectTrigger className={form.formState.errors.target_location ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}>
                                                 <SelectValue placeholder="--Select--" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -391,7 +391,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                                     variant={"outline"}
                                                     className={cn(
                                                         "flex items-center justify-between pr-3 pl-3 text-left   ",
-                                                        form.formState.errors.target_delivery_date ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input",
+                                                        form.formState.errors.target_delivery_date ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input",
                                                         !field.value && "text-muted-foreground"
                                                     )}
                                                 >
@@ -429,7 +429,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     <FormLabel className=" font-medium text-xs leading-5 text-[#323C43]">Select Requestor</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
-                                            <SelectTrigger className={form.formState.errors.select_requestor ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}>
+                                            <SelectTrigger className={form.formState.errors.select_requestor ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}>
                                                 <SelectValue placeholder="--Select--" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -452,7 +452,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                     <FormControl>
                                         <Textarea
                                             placeholder="Describe additional information"
-                                            className={`resize-none ${form.formState.errors.note ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]": "border-input"}`}
+                                            className={`resize-none ${form.formState.errors.note ? "border-[#CA2B17] focus-visible:ring-[#CA2B17]" : "border-input"}`}
                                             rows={3}
                                             {...field}
                                         />
@@ -483,7 +483,7 @@ export function FormDialog({ trigger }: FormDialogProps) {
                                                 id="fileInput"
                                                 className="bg-[#F3F5F6]"
                                             >
-                                                <div className={`flex items-center justify-center flex-col py-10 w-full rounded-lg ${form.formState.errors.file_upload ? "border-[#CA2B17] border-[1px]": "border-input"}`}>
+                                                <div className={`flex items-center justify-center flex-col py-10 w-full rounded-lg ${form.formState.errors.file_upload ? "border-[#CA2B17] border-[1px]" : "border-input"}`}>
                                                     <IconFileUpload className="text-[#3199E8] h-10 w-10" strokeWidth={'1.25'} />
                                                     <div className="mb-1 text-sm space-y-3 text-center pt-2">
                                                         <span className="font-semibold">Drag and drop files to upload or</span>

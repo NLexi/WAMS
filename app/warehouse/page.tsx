@@ -69,7 +69,7 @@ export default async function WarehousePage() {
 
     return (
         <div>
-            <Navbar username='Eko Widiyanto'/>
+            <Navbar username='Eko Widiyanto' />
             <PageTabs initialTab="warehouse" />
             <div className="container mx-auto py-5">
                 <div className="flex justify-between items-center pb-2 text-black">

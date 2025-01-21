@@ -68,7 +68,7 @@ export async function POST(req: Request) {
   );
   response.headers.append(
     "Set-Cookie",
-    `refreshToken=${refreshToken}; HttpOnly; Path=/; Max-Age=604800; Secure; SameSite=Strict`
+    `refreshToken=${refreshToken}; HttpOnly; Path=/; Max-Age=86400; Secure; SameSite=Strict`
   );
 
   return response;

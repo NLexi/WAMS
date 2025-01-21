@@ -57,31 +57,31 @@ async function getData(): Promise<ConfirmationRequest[]> {
 
 
 export default async function ConfirmationRequestFilled() {
-    const data = await getData();
+  const data = await getData();
 
-    return (
-        <div>
-            <Navbar username='Eko Widiyanto' />
-            <PageTabs initialTab="request" />
-            <div className="container mx-auto py-6">
-                <div className="flex justify-start items-center pl-[13%] pb-2 text-black">
-                    <h1 className="text-[1.75rem] font-bold font-outfit leading-8">Confirmation Request</h1>
-                </div>
-            </div>
-            <div className="container mx-auto px-[10%]">
-                <div className="flex flex-col mx-auto p-4">
-                    <Label className="flex flex-row items-center gap-1 text-xs font-medium text-[#323C43] leading-5">PO Number</Label>
-                    <div className="flex flex-row gap-4 items-center">
-                        <Input className="w-[90%] placeholder-[#B3BEC6] text-sm leading-5 py-0 min-h-max" placeholder="Input PO Number"></Input>
-                        <ButtonCustom variant="primary" icon={<IconListSearch />} type="link" destination="#">Check</ButtonCustom>
-                    </div>
-                    <div className="font-semibold text-xl leading-6 font-outfit border-b-2 border-[#CDD4DA] pt-[5%] pb-4">Service Lists on this PO</div>
-                    <div className="my-4">
-                        <DataTable columns={columns} data={data} />
-                    </div>
-                    <FormBAST />
-                </div>
-            </div>
+  return (
+    <div>
+      <Navbar username='Eko Widiyanto' />
+      <PageTabs initialTab="request" />
+      <div className="container mx-auto py-6">
+        <div className="flex justify-start items-center pl-[13%] pb-2 text-black">
+          <h1 className="text-[1.75rem] font-bold font-outfit leading-8">Confirmation Request</h1>
         </div>
-    )
+      </div>
+      <div className="container mx-auto px-[10%]">
+        <div className="flex flex-col mx-auto p-4">
+          <Label className="flex flex-row items-center gap-1 text-xs font-medium text-[#323C43] leading-5">PO Number</Label>
+          <div className="flex flex-row gap-4 items-center">
+            <Input className="w-[90%] placeholder-[#B3BEC6] text-sm leading-5 py-0 min-h-max" placeholder="Input PO Number"></Input>
+            <ButtonCustom variant="primary" icon={<IconListSearch />} type="link" destination="#">Check</ButtonCustom>
+          </div>
+          <div className="font-semibold text-xl leading-6 font-outfit border-b-2 border-[#CDD4DA] pt-[5%] pb-4">Service Lists on this PO</div>
+          <div className="my-4">
+            <DataTable columns={columns} data={data} />
+          </div>
+          <FormBAST />
+        </div>
+      </div>
+    </div>
+  )
 }

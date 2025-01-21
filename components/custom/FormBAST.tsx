@@ -34,7 +34,7 @@ import { Textarea } from "../ui/textarea"
 import { ConfirmationDialog } from "./ConfirmationModal"
 
 const formSchema = z.object({
-    request_code: z.string({message: "Please input the BAST Number"}),
+    request_code: z.string({ message: "Please input the BAST Number" }),
     max_delivery_date: z.coerce.date({ message: "Please add delivery date" }),
     note: z.string().optional(),
     file_upload: z.array(
@@ -217,7 +217,7 @@ export function FormBAST() {
                     <div className="flex justify-between items-center">
                         <div className="flex gap-3">
                             <ButtonCustom variant='tertiary' type="link" destination="/request">Cancel</ButtonCustom>
-                            <ConfirmationDialog trigger={<Button type="submit" className="flex h-10 items-center justify-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline bg-[#3199E8] text-white hover:bg-[#83C1F1] active:bg-blue-600 focus-visible:outline-slate-500"><IconArrowRight /> Submit Form</Button>}/>
+                            <ConfirmationDialog trigger={<Button type="submit" className="flex h-10 items-center justify-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline bg-[#3199E8] text-white hover:bg-[#83C1F1] active:bg-blue-600 focus-visible:outline-slate-500"><IconArrowRight /> Submit Form</Button>} />
                         </div>
                     </div>
                 </div>

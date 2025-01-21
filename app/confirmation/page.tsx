@@ -9,7 +9,7 @@ export default function ConfirmationRequest() {
 
     return (
         <div>
-            <Navbar username='Eko Widiyanto'/>
+            <Navbar username='Eko Widiyanto' />
             <PageTabs initialTab="request" />
             <div className="container mx-auto py-6">
                 <div className="flex justify-start items-center pl-[13%] pb-2 text-black">

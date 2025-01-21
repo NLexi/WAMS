@@ -24,7 +24,7 @@ const PurchaseOrderDetails = () => {
         status: searchParams.get("status"),
     };
 
-    const formatCurrency = (value:number) => {
+    const formatCurrency = (value: number) => {
         return new Intl.NumberFormat("id-ID", {
             style: "currency",
             currency: "IDR",

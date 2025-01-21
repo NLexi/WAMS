@@ -36,8 +36,8 @@ const createdo = () => {
 
     return (
         <div>
-            <Navbar username='Eko Widiyanto'/>
-            <PageTabs initialTab="request"/>
+            <Navbar username='Eko Widiyanto' />
+            <PageTabs initialTab="request" />
             <div className="container mx-auto py-6">
                 <div className="flex justify-start items-center pb-2 text-black">
                     <h1 className="text-[1.75rem] font-bold font-outfit leading-8">Create New DO</h1>

@@ -48,7 +48,7 @@ export function DataTable<TData, TValue>({
         const selectedRows = table.getFilteredSelectedRowModel().rows
         const requestNumbers = selectedRows.map((row) => row._valuesCache.request_number)
         return requestNumbers.join(", ")
-      }
+    }
 
     if (!data.length) {
         return (
@@ -92,8 +92,8 @@ export function DataTable<TData, TValue>({
                 <div className="flex flex-row w-full bg-[#D6EAFA] m-auto justify-start items-center rounded-sm py-3 px-6 gap-4">
                     <div>{table.getFilteredSelectedRowModel().rows.length} items selected: </div>
                     <ButtonCustom variant="tertiary" icon={<IconWallet />}> Create PO</ButtonCustom>
-                    <RequestReject trigger={<ButtonCustom variant="tertiary" icon={<IconCircleX />}> Decline Requests</ButtonCustom>} requestNumber={getSelectedRequestNumbers()}/>
-                    <DeleteRequest trigger={<Button className="flex h-10 items-center rounded-md text-sm focus-visible:outline aria-disabled:cursor-not-allowed aria-disabled:opacity-50 justify-center text-[#CA2B17] bg-white px-4 font-medium transition-colors hover:bg-[#CA2B17] hover:text-white hover:opacity-70 shadow-none"><IconTrash /> Delete Requests</Button>} requestNumber={getSelectedRequestNumbers()}/>
+                    <RequestReject trigger={<ButtonCustom variant="tertiary" icon={<IconCircleX />}> Decline Requests</ButtonCustom>} requestNumber={getSelectedRequestNumbers()} />
+                    <DeleteRequest trigger={<Button className="flex h-10 items-center rounded-md text-sm focus-visible:outline aria-disabled:cursor-not-allowed aria-disabled:opacity-50 justify-center text-[#CA2B17] bg-white px-4 font-medium transition-colors hover:bg-[#CA2B17] hover:text-white hover:opacity-70 shadow-none"><IconTrash /> Delete Requests</Button>} requestNumber={getSelectedRequestNumbers()} />
                 </div>
                 : <></>
             }

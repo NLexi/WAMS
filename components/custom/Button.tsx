@@ -23,13 +23,13 @@ export function ButtonCustom({ children, icon, variant, type = "button", color =
 
     switch (color) {
         case "green":
-            palette = { light: "hover:bg-[#C0F0C8]", dark_bg: "bg-[#17CA1D]", dark_border:"border-[#17CA1D]", dark_text: "text-[#17CA1D]" };
+            palette = { light: "hover:bg-[#C0F0C8]", dark_bg: "bg-[#17CA1D]", dark_border: "border-[#17CA1D]", dark_text: "text-[#17CA1D]" };
             break;
         case "red":
-            palette = { light: "hover:bg-[#EBBAA7]", dark_bg: "bg-[#CA2B17]", dark_border:"border-[#CA2B17]", dark_text: "text-[#CA2B17]" };
+            palette = { light: "hover:bg-[#EBBAA7]", dark_bg: "bg-[#CA2B17]", dark_border: "border-[#CA2B17]", dark_text: "text-[#CA2B17]" };
             break;
         default:
-            palette = { light: "hover:bg-[#D6EAFA]", dark_bg: "bg-[#3199E8]", dark_border:"border-[#3199E8]", dark_text: "text-[#3199E8]" };
+            palette = { light: "hover:bg-[#D6EAFA]", dark_bg: "bg-[#3199E8]", dark_border: "border-[#3199E8]", dark_text: "text-[#3199E8]" };
     }
 
     const variants = {

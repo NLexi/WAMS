@@ -22,16 +22,16 @@ const DeliveryDetails = () => {
 
     return (
         <div>
-            <Navbar username='Eko Widiyanto'/>
-            <PageTabs initialTab="request"/>
+            <Navbar username='Eko Widiyanto' />
+            <PageTabs initialTab="request" />
             <div className="container mx-auto py-6">
                 <div className="flex justify-between items-center pb-2 text-black">
                     <h4 className="text-[1.75rem] font-bold font-outfit leading-8">{deliveryData.requestNumber}</h4>
                     <div className="flex justify-between items-center">
                         <div className="flex gap-3">
                             <ButtonCustom variant='secondary' icon={<IconArrowBack />} type="link" destination="/delivery">Back to list</ButtonCustom>
-                            <ButtonCustom variant='primary' icon={<IconTruckDelivery />} type="link" 
-                            destination={`/delivery/createdo?requestNumber=${deliveryData.requestNumber}&poNumber=${deliveryData.poNumber}&requestor=${deliveryData.requestor}&department=${deliveryData.department}&requestDate=${deliveryData.requestDate}`}
+                            <ButtonCustom variant='primary' icon={<IconTruckDelivery />} type="link"
+                                destination={`/delivery/createdo?requestNumber=${deliveryData.requestNumber}&poNumber=${deliveryData.poNumber}&requestor=${deliveryData.requestor}&department=${deliveryData.department}&requestDate=${deliveryData.requestDate}`}
                             >Create DO
                             </ButtonCustom>
                         </div>

@@ -32,7 +32,7 @@ export function DeleteRequest({ trigger, requestNumber }: DeleteRequestProps) {
                 </DialogHeader>
                 <DialogFooter>
                     <DialogClose asChild>
-                        <ButtonCustom variant='danger'>                   Confirm Delete                   </ButtonCustom>
+                        <ButtonCustom variant='primary' color="red">                   Confirm Delete                   </ButtonCustom>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>

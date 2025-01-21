@@ -15,8 +15,8 @@ export default function CreatePOPage() {
 
     return (
         <div>
-            <Navbar username='Eko Widiyanto'/>
-            <PageTabs initialTab="purchaseorder"/>
+            <Navbar username='Eko Widiyanto' />
+            <PageTabs initialTab="purchaseorder" />
             <div className="container mx-auto py-6">
                 <div className="flex justify-start items-center pb-2 text-black">
                     <h1 className="text-[1.75rem] font-bold font-outfit leading-8">Edit: {podata.poNumber}</h1>
@@ -27,7 +27,7 @@ export default function CreatePOPage() {
                     <div className="flex flex-row justify-start items-center gap-4 text-sm">
                         <div className="w-7 h-7 rounded-full bg-[#3199E8] flex items-center justify-center font-semibold text-white">
                             1
-                        </div>  
+                        </div>
                         <div>General Information</div>
                     </div>
                     <div className="flex flex-row justify-start items-center gap-4 text-sm">
@@ -38,7 +38,7 @@ export default function CreatePOPage() {
                     </div>
                 </div>
                 <div className="basis-3/4">
-                    <FormNormal type="Update"/>
+                    <FormNormal type="Update" />
                 </div>
             </div>
         </div>

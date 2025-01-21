@@ -146,7 +146,7 @@ export default function LogHistory() {
             </div>
             <div className="flex flex-col gap-4 py-4 bg-slate-50 rounded-md shadow items-center justify-center">
                 <p className="font-bold font-outfit text-2xl text-[#323C43]">Demo: </p>
-                <LogHistory/>
+                <LogHistory />
             </div>
         </div>
     )

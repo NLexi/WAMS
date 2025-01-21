@@ -11,62 +11,62 @@ import { Button } from "@/components/ui/button"
 import { RequestSuccess } from "@/components/custom/RequestSuccess"
 
 async function getData(): Promise<AddRequest[]> {
-  return [
-    {
-      id: "728ed52f",
-      itemName: "item name",
-      type: "Item",
-      amount: 5,
-      receivedTarget: "Received Target",
-      requestor: "Dede Maulana",
-      status: "Pre Order"
-    },
-    {
-      id: "ae7832gf",
-      itemName: "item name",
-      type: "Service",
-      amount: 3,
-      receivedTarget: "Received Target",
-      requestor: "Alice Johnson",
-      status: "Pre Order"
-    },
-    {
-      id: "c94be173",
-      itemName: "item name",
-      type: "Item",
-      amount: 8,
-      receivedTarget: "Received Target",
-      requestor: "Bob Smith",
-      status: "Pre Order"
-    },
-    {
-      id: "c209ab29",
-      itemName: "item name",
-      type: "Item",
-      amount: 11,
-      receivedTarget: "Received Target",
-      requestor: "David Williams",
-      status: "In Stock"
-    },
-    {
-      id: "c209ab30",
-      itemName: "item name",
-      type: "Service",
-      amount: 1,
-      receivedTarget: "Received Target",
-      requestor: "William Johnson",
-      status: "In Stock"
-    },
-    {
-      id: "c209ab31",
-      itemName: "item name",
-      type: "Service",
-      amount: 5,
-      receivedTarget: "Received Target",
-      requestor: "Sean Black",
-      status: "In Stock"
-    }
-  ]
+    return [
+        {
+            id: "728ed52f",
+            itemName: "item name",
+            type: "Item",
+            amount: 5,
+            receivedTarget: "Received Target",
+            requestor: "Dede Maulana",
+            status: "Pre Order"
+        },
+        {
+            id: "ae7832gf",
+            itemName: "item name",
+            type: "Service",
+            amount: 3,
+            receivedTarget: "Received Target",
+            requestor: "Alice Johnson",
+            status: "Pre Order"
+        },
+        {
+            id: "c94be173",
+            itemName: "item name",
+            type: "Item",
+            amount: 8,
+            receivedTarget: "Received Target",
+            requestor: "Bob Smith",
+            status: "Pre Order"
+        },
+        {
+            id: "c209ab29",
+            itemName: "item name",
+            type: "Item",
+            amount: 11,
+            receivedTarget: "Received Target",
+            requestor: "David Williams",
+            status: "In Stock"
+        },
+        {
+            id: "c209ab30",
+            itemName: "item name",
+            type: "Service",
+            amount: 1,
+            receivedTarget: "Received Target",
+            requestor: "William Johnson",
+            status: "In Stock"
+        },
+        {
+            id: "c209ab31",
+            itemName: "item name",
+            type: "Service",
+            amount: 5,
+            receivedTarget: "Received Target",
+            requestor: "Sean Black",
+            status: "In Stock"
+        }
+    ]
 }
 
 export default async function AddRequestFilled() {
@@ -74,8 +74,8 @@ export default async function AddRequestFilled() {
 
     return (
         <div>
-            <Navbar username='Eko Widiyanto'/>
-            <PageTabs initialTab="request"/>
+            <Navbar username='Eko Widiyanto' />
+            <PageTabs initialTab="request" />
             <div className="container mx-auto">
                 <div className="py-6">
                     <div className="flex justify-start items-center pb-2 text-black">
@@ -129,7 +129,7 @@ export default async function AddRequestFilled() {
                         <div className="my-6">
                             <div className="border-b-2 border-[#CDD4DA] flex flex-row justify-between items-center">
                                 <h3 className="text-xl font-semibold font-outift leading-6 p-4 text-nowrap">Item  & Service Request</h3>
-                                <FormDialog trigger={<Button variant='secondary' className=" text-sm font-medium leading-5 text-[#3199E8] bg-[#F3F5F6] hover:opacity-70"><IconPlus />Add Item/service</Button>}/>
+                                <FormDialog trigger={<Button variant='secondary' className=" text-sm font-medium leading-5 text-[#3199E8] bg-[#F3F5F6] hover:opacity-70"><IconPlus />Add Item/service</Button>} />
                             </div>
                             <div className="mt-4">
                                 <DataTable columns={columns} data={data} />
@@ -139,7 +139,7 @@ export default async function AddRequestFilled() {
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-3">
                                     <ButtonCustom variant='tertiary' type="link" destination="/request">Cancel</ButtonCustom>
-                                    <RequestSuccess trigger={<ButtonCustom variant='primary' icon={<IconArrowRight />}>Submit Request</ButtonCustom>}/>
+                                    <RequestSuccess trigger={<ButtonCustom variant='primary' icon={<IconArrowRight />}>Submit Request</ButtonCustom>} />
                                 </div>
                             </div>
                         </div>

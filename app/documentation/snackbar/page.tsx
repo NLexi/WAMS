@@ -8,13 +8,13 @@ import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function SnackbarDocumentation() {
 
-    const showSnackbar = useSnackbar();
+  const showSnackbar = useSnackbar();
 
-    const handleClick = (variant: 'success' | 'error' | 'default' | 'info') => {
-        showSnackbar(`Message`, variant);
-    };
+  const handleClick = (variant: 'success' | 'error' | 'default' | 'info') => {
+    showSnackbar(`Message`, variant);
+  };
 
-    const codestring = `
+  const codestring = `
 'use client';
 
 import { IconDownload } from '@tabler/icons-react';
@@ -134,56 +134,56 @@ export const useSnackbar = (): SnackbarContextType => {
 
     `
 
-    return (
-        <div className="container mx-auto py-12 p-4">
-            <div className="flex justify-between items-center pb-2 text-black">
-                <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Snackbar Documentation</h4>
-                <div className="flex justify-between items-center">
-                    <div className="flex gap-3">
-                        <ButtonCustom variant='secondary' icon={<IconArrowBack />} type="link" destination="/documentation">Back to component list</ButtonCustom>
-                    </div>
-                </div>
-            </div>
-            <div className="flex py-4">
-                <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 pr-1">
-                    <div className="flex flex-col gap-2">
-                        <p className="text-sm font-semibold text-[#323C43]">Variant</p>
-                        <p className="text-base text-[#4A5863]">success, error, default, info     </p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <p className="text-sm font-semibold text-[#323C43]">Message</p>
-                        <p className="text-base text-[#4A5863]">main message with bold font</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <p className="text-sm font-semibold text-[#323C43]">SubMessage</p>
-                        <p className="text-base text-[#4A5863]">smaller message with normal font</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <p className="text-sm font-semibold text-[#323C43]">How to use</p>
-                        <p className="text-base text-[#4A5863]">call useSnackBar(<span className="font-bold">[variant]</span>) on an onClick component</p>
-                    </div>
-                </div>
-                <div className="basis-3/4">
-                    <div className="my-auto px-8 py-4">
-                        <p className="text-base text-[#323C43] font-semibold font-outfit">Component Code</p>
-                        <SyntaxHighlighter
-                            language="javascript"
-                            style={dracula}
-                            wrapLongLines
-                            customStyle={{ padding: '8px', borderRadius: '8px', maxWidth: '50rem', maxHeight: '23rem' }}
-                        >
-                            {codestring}
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-            </div>
-            <div className="flex flex-row gap-4 m-auto p-2 bg-slate-50 rounded-md shadow items-center justify-center">
-                <p className="font-bold font-outfit text-2xl text-[#323C43]">Demo: </p>
-                <ButtonCustom variant="primary" color="green" onClick={() => handleClick('success')}>success</ButtonCustom>
-                <ButtonCustom variant="primary" color="red" onClick={() => handleClick('error')}>error</ButtonCustom>
-                <ButtonCustom variant="primary" onClick={() => handleClick('default')}>default</ButtonCustom>
-                <ButtonCustom variant="secondary" onClick={() => handleClick('info')}>info</ButtonCustom>
-            </div>
+  return (
+    <div className="container mx-auto py-12 p-4">
+      <div className="flex justify-between items-center pb-2 text-black">
+        <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Snackbar Documentation</h4>
+        <div className="flex justify-between items-center">
+          <div className="flex gap-3">
+            <ButtonCustom variant='secondary' icon={<IconArrowBack />} type="link" destination="/documentation">Back to component list</ButtonCustom>
+          </div>
         </div>
-    )
+      </div>
+      <div className="flex py-4">
+        <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 pr-1">
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-semibold text-[#323C43]">Variant</p>
+            <p className="text-base text-[#4A5863]">success, error, default, info     </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-semibold text-[#323C43]">Message</p>
+            <p className="text-base text-[#4A5863]">main message with bold font</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-semibold text-[#323C43]">SubMessage</p>
+            <p className="text-base text-[#4A5863]">smaller message with normal font</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-semibold text-[#323C43]">How to use</p>
+            <p className="text-base text-[#4A5863]">call useSnackBar(<span className="font-bold">[variant]</span>) on an onClick component</p>
+          </div>
+        </div>
+        <div className="basis-3/4">
+          <div className="my-auto px-8 py-4">
+            <p className="text-base text-[#323C43] font-semibold font-outfit">Component Code</p>
+            <SyntaxHighlighter
+              language="javascript"
+              style={dracula}
+              wrapLongLines
+              customStyle={{ padding: '8px', borderRadius: '8px', maxWidth: '50rem', maxHeight: '23rem' }}
+            >
+              {codestring}
+            </SyntaxHighlighter>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-row gap-4 m-auto p-2 bg-slate-50 rounded-md shadow items-center justify-center">
+        <p className="font-bold font-outfit text-2xl text-[#323C43]">Demo: </p>
+        <ButtonCustom variant="primary" color="green" onClick={() => handleClick('success')}>success</ButtonCustom>
+        <ButtonCustom variant="primary" color="red" onClick={() => handleClick('error')}>error</ButtonCustom>
+        <ButtonCustom variant="primary" onClick={() => handleClick('default')}>default</ButtonCustom>
+        <ButtonCustom variant="secondary" onClick={() => handleClick('info')}>info</ButtonCustom>
+      </div>
+    </div>
+  )
 };

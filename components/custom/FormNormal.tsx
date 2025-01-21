@@ -40,7 +40,7 @@ const formSchema = z.object({
     po_number: z.string().optional(),
     previous_po_number: z.string({ message: "Please input a PO number" }),
     invoice_address: z.string({ message: "Please select an address" }),
-    budget: z.coerce.number({message: "Please input a budget"}).nonnegative(),
+    budget: z.coerce.number({ message: "Please input a budget" }).nonnegative(),
     unit: z.string({ message: "Please select a unit" }),
     vendor: z.string({ message: "Please add a vendor" }),
     sales_officer: z.string({ message: "Please select which officer" }),
@@ -67,7 +67,7 @@ type FormNormalProps = {
     type: string
 }
 
-export function FormNormal({type}: FormNormalProps) {
+export function FormNormal({ type }: FormNormalProps) {
 
     const [files, setFiles] = useState<File[] | null>(null);
 
@@ -405,7 +405,7 @@ export function FormNormal({type}: FormNormalProps) {
                                 <TableCell className="text-wrap w-[30%]">New drop cable FTTH network installation [OTC]<p className="text-[#4A5863] text-sm font-normal">Item Code 06001400100001</p></TableCell>
                                 <TableCell>1 Pcs</TableCell>
                                 <TableCell className="w-[20%]">
-                                    <Input placeholder="Input Here" className="text-gray-400"  defaultValue={'2.880.000'}></Input>
+                                    <Input placeholder="Input Here" className="text-gray-400" defaultValue={'2.880.000'}></Input>
                                 </TableCell>
                                 <TableCell className="text-wrap w-[20%]">
                                     <Input placeholder="Input Here" className="text-gray-400" defaultValue={'0'}></Input>
@@ -459,7 +459,7 @@ export function FormNormal({type}: FormNormalProps) {
                             <Button type="submit" className="flex h-10 items-center justify-center rounded-md px-4 font-medium text-sm transition-colors focus-visible:outline bg-[#3199E8] text-white hover:bg-[#83C1F1] active:bg-blue-600 focus-visible:outline-slate-500"><IconArrowRight /> {type} PO</Button>
                         </div>
                     </div>
-                </div>  
+                </div>
             </form>
         </Form >
     );

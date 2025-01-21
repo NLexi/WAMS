@@ -67,7 +67,7 @@ export default async function PurchaseOrderPage() {
 
     return (
         <div>
-            <Navbar username='Eko Widiyanto'/>
+            <Navbar username='Eko Widiyanto' />
             <PageTabs initialTab="purchaseorder" />
             <div className="container mx-auto py-5">
                 <div className="flex justify-between items-center pb-2 text-black">

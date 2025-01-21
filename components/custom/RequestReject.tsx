@@ -30,12 +30,12 @@ export function RequestReject({ trigger, requestNumber }: DeleteRequestProps) {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="w-[90%] mt-2">
-                <p className="font-medium text-xs leading-5 text-[#323C43] p-1">Reason</p>
-                <Textarea id='reason' placeholder="Give a Reason to decline this request" className="resize-none text-xs text-[#4A5863] placeholder-[#4A5863] rounded-sm" />
+                    <p className="font-medium text-xs leading-5 text-[#323C43] p-1">Reason</p>
+                    <Textarea id='reason' placeholder="Give a Reason to decline this request" className="resize-none text-xs text-[#4A5863] placeholder-[#4A5863] rounded-sm" />
                 </div>
                 <DialogFooter>
                     <DialogClose type="submit" asChild>
-                        <ButtonCustom variant='danger'>                   Submit Reject                   </ButtonCustom>
+                        <ButtonCustom variant='primary' color="red">                   Submit Reject                   </ButtonCustom>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>
