@@ -56,15 +56,15 @@ export default function Navbar({ username }:NavbarProps) {
                     </div>
                 </div>
             </div>
-            <div className="flex py-4">
+            <div className="flex pt-4 py-2">
                 <div className="basis-1/4 border-r-2 flex flex-col gap-6 h-[55vh] py-4 pr-1">
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Username</p>
-                        <p className="text-base text-[#4A5863]">name shown on navbar         </p>
+                        <p className="text-base text-[#4A5863]">username shown on navbar                       </p>
                     </div>
                 </div>
                 <div className="basis-3/4">
-                    <div className="my-auto px-8 py-4">
+                    <div className="my-auto px-8 pt-4">
                         <p className="text-base text-[#323C43] font-semibold font-outfit">Component Code</p>
                         <SyntaxHighlighter
                             language="javascript"
@@ -78,7 +78,7 @@ export default function Navbar({ username }:NavbarProps) {
                 </div>
             </div>
             <p className="font-bold font-outfit text-2xl text-[#323C43]">Demo: </p>
-            <div className=" bg-slate-50 py-2 w-screen">
+            <div className=" bg-slate-50 py-2">
                 <Navbar username="Username" />
             </div>
         </div>

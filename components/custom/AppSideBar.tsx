@@ -43,6 +43,14 @@ const items = [
     title: "Additional Resources",
     url: "/documentation/resources",
   },
+  {
+    title: "WAMS Demo",
+    url: "/delivery"
+  },
+  {
+    title: "Auth Demo",
+    url: "/authdemo/login"
+  }
 ]
 
 export function AppSidebar() {

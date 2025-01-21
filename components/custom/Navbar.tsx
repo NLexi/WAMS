@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { IconBell, IconUser } from '@tabler/icons-react';
+import React from "react";
 
 type NavbarProps = {
     username?: string
@@ -10,7 +11,7 @@ type NavbarProps = {
 export default function Navbar({ username }: NavbarProps) {
     return (
         <nav className="bg-white border-[#CDD4DA] border-b p-2">
-            <div className="w-screen mx-auto flex justify-between items-center">
+            <div className="w-full mx-auto flex justify-between items-center">
                 <div className="flex items-center px-2">
                     <Image src="/Logo_WAMS.svg" alt="Icon" width={200} height={200} />
                 </div>

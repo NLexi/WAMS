@@ -48,7 +48,7 @@ npm ERR! to accept an incorrect (and potentially broken) dependency resolution.`
     return (
         <div className="container mx-auto py-12 p-4">
             <div className="flex justify-between items-center pb-2 text-black">
-                <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Resource Documentation</h4>
+                <h4 className="text-[1.75rem] font-bold font-outfit leading-8">Additional Resources</h4>
                 <div className="flex justify-between items-center">
                     <div className="flex gap-3">
                         <ButtonCustom variant='secondary' icon={<IconArrowBack />} type="link" destination="/documentation">Back to resource list</ButtonCustom>
@@ -63,7 +63,7 @@ npm ERR! to accept an incorrect (and potentially broken) dependency resolution.`
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Components</p>
-                        <p className="text-base text-[#4A5863]">basic components other than buttons and tabs use <a href="https://ui.shadcn.com/docs/components/" className="font-bold">shadcn</a>, additionally can also utilize <a href="https://shadcn-extension.vercel.app/docs/introduction" className="font-bold">shadcn extension</a></p>
+                        <p className="text-base text-[#4A5863]">basic components use <a href="https://ui.shadcn.com/docs/components/" className="font-bold">shadcn</a>, additionally also utilized <a href="https://shadcn-extension.vercel.app/docs/introduction" className="font-bold">shadcn extension</a></p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="text-sm font-semibold text-[#323C43]">Drag and Drop</p>

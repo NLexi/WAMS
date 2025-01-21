@@ -179,8 +179,8 @@ export const useSnackbar = (): SnackbarContextType => {
             </div>
             <div className="flex flex-row gap-4 m-auto p-2 bg-slate-50 rounded-md shadow items-center justify-center">
                 <p className="font-bold font-outfit text-2xl text-[#323C43]">Demo: </p>
-                <ButtonCustom variant="positive" onClick={() => handleClick('success')}>success</ButtonCustom>
-                <ButtonCustom variant="danger" onClick={() => handleClick('error')}>error</ButtonCustom>
+                <ButtonCustom variant="primary" color="green" onClick={() => handleClick('success')}>success</ButtonCustom>
+                <ButtonCustom variant="primary" color="red" onClick={() => handleClick('error')}>error</ButtonCustom>
                 <ButtonCustom variant="primary" onClick={() => handleClick('default')}>default</ButtonCustom>
                 <ButtonCustom variant="secondary" onClick={() => handleClick('info')}>info</ButtonCustom>
             </div>

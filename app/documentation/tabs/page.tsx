@@ -1,4 +1,5 @@
 import { ButtonCustom } from "@/components/custom/Button"
+import { PageTabs } from "@/components/custom/PageTabs";
 import { Tab } from "@/components/custom/Tab";
 import { IconArrowBack, IconTarget } from "@tabler/icons-react"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';

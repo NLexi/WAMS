@@ -7,7 +7,7 @@ export default function NotFound() {
         <h1 className="text-xl font-bold text-[#CA2B17]">Page Not Found 404!</h1>
         <p className="text-lg text-[#4A5863]">The page you are looking for does not exist.</p>
         <div className="mt-[5%]">
-          <ButtonCustom variant="secondary" type="link" destination="/">
+          <ButtonCustom variant="secondary" color='red' type="link" destination="/">
             Go Back to Home
           </ButtonCustom>
         </div>
