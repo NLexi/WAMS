@@ -7,7 +7,7 @@ import {
 } from "@/lib/jwt";
 
 export const config = {
-  matcher: ["/protected/:path*"],
+  matcher: ["/protected/:path*", "/login"],
 };
 
 export async function middleware(req: any) {
@@ -19,6 +19,9 @@ export async function middleware(req: any) {
   if (accessToken) {
     const user = await verifyAccessToken(accessToken);
     if (user) {
+      if (req.nextUrl.pathname === "/login") {
+        return NextResponse.redirect(new URL("/protected", req.url));
+      }
       return NextResponse.next();
     }
   }
@@ -40,8 +43,17 @@ export async function middleware(req: any) {
         "Set-Cookie",
         `accessToken=${newAccessToken}; HttpOnly; Path=/; Max-Age=900; Secure; SameSite=Strict`
       );
+
+      if (req.nextUrl.pathname === "/login") {
+        console.log("halo");
+        return NextResponse.redirect(new URL("/protected", req.url));
+      }
       return response;
     }
+  }
+
+  if (req.nextUrl.pathname === "/login") {
+    return NextResponse.next();
   }
 
   return NextResponse.redirect(new URL("/login", req.url));

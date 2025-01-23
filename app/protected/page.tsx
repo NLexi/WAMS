@@ -2,10 +2,24 @@
 
 import LogoutButton from "@/components/LogoutButton";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function ProtectedPage() {
     const router = useRouter();
-    const userRole = window.sessionStorage.getItem("UserRole");
+    const [userRole, setUserRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        const role = sessionStorage.getItem("UserRole");
+        if (!role) {
+            router.push("/login");
+        } else {
+            setUserRole(role);
+        }
+    }, [router]);
+
+    if (!userRole) {
+        return null;
+    }
 
     return (
         <div className="h-screen flex flex-col justify-center items-center gap-2">

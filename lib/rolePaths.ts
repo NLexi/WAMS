@@ -13,7 +13,7 @@ type RolePaths = {
       
     },
     EDITOR: {
-      "/protected/editor": ["GET", "POST", "PUT", "DELETE"],
+      "/protected/editor": ["GET", "POST", "PUT"],
     }
   };
   

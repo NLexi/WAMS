@@ -1,7 +1,7 @@
 import rolePaths from "@/lib/rolePaths";
 
 export async function POST(req: Request) {
-  const { role, path }: { role: string; path: string } =
+  const { role, path }: { role: string; path: string; } =
     await req.json();
   if (!role || !path ) {
     return new Response(
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
   }
 
   return new Response(
-    JSON.stringify({ message: "Access granted" }),
+    JSON.stringify({ message: "Access granted", method: hasAccess }),
     { status: 200, headers: { "Content-Type": "application/json" } }
   );
 }
