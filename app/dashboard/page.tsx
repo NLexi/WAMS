@@ -11,7 +11,7 @@ export default async function Dashboard() {
             <h1 className="font-bold text-lg">Dashboard</h1>
             <p>Welcome, {session?.user?.name}</p>
             <Link href="/blog">
-                <button className="bg-blue-200 p-2 px-4 rounded-md">Blog</button>
+                <button className="bg-slate-200 p-2 px-4 rounded-md">Blog</button>
             </Link>
             <div className="flex flex-row gap-4 justify-evenly">
                 {

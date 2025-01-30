@@ -49,7 +49,7 @@ export default function BlogClient({ session }: BlogClientProps) {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 m-auto">
       <h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
 
       {canCreate && (
