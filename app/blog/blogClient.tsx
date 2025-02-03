@@ -1,5 +1,7 @@
 "use client";
 
+import { Permissions } from "@/types/next-auth";
+import { hasPagePermission } from "@/utils/permissions";
 import { useState } from "react";
 
 const initialBlogPosts = [
@@ -10,7 +12,7 @@ const initialBlogPosts = [
 interface BlogClientProps {
   session: {
     user?: {
-      permissions?: string[];
+      permissions?: Permissions;
     };
   } | null;
 }
@@ -18,10 +20,10 @@ interface BlogClientProps {
 export default function BlogClient({ session }: BlogClientProps) {
   const [blogPosts, setBlogPosts] = useState(initialBlogPosts);
   const [newPost, setNewPost] = useState({ title: "", content: "" });
-
-  const canCreate = session?.user?.permissions?.includes("POST");
-  const canUpdate = session?.user?.permissions?.includes("PUT");
-  const canDelete = session?.user?.permissions?.includes("DELETE");
+  
+  const canCreate = hasPagePermission(session?.user?.permissions || {}, "blog", "POST");
+  const canUpdate = hasPagePermission(session?.user?.permissions || {}, "blog", "PUT");
+  const canDelete = hasPagePermission(session?.user?.permissions || {}, "blog", "DELETE");
 
   const handleCreate = () => {
     if (!newPost.title || !newPost.content) return;

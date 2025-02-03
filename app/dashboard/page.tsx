@@ -5,7 +5,7 @@ import { LogoutButton } from "@/components/logoutButton";
 
 export default async function Dashboard() {
     const session = await getServerSession(authOptions);
-
+    const roles = ["ADMIN"]
     return (
         <div className="h-screen flex flex-col justify-center items-center gap-2">
             <h1 className="font-bold text-lg">Dashboard</h1>
@@ -16,7 +16,7 @@ export default async function Dashboard() {
             <div className="flex flex-row gap-4 justify-evenly">
                 {
                     session?.user?.role === 'ADMIN' ?
-                        <Link href="/admin">
+                        <Link href="/admin">    
                             <button className="bg-green-200 p-2 px-4 rounded-md">Admin</button>
                         </Link> :
                         <></>

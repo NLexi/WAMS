@@ -1,29 +1,41 @@
-import NextAuth from "next-auth";
+import "next-auth";
 
 declare module "next-auth" {
+  interface User {
+    id: string;
+    email: string;
+    name?: string | null;
+    role: string;
+    permissions: Permissions;
+    departmentId?: string;
+  }
+
   interface Session {
     user: {
       id: string;
+      email: string;
       name?: string | null;
-      email?: string | null;
       role: string;
-      permissions: string[];
+      permissions: Permisisons;
+      departmentId?: string;
     };
   }
-
-  interface User {
-    id: string;
-    role: string;
-    permissions: string[];
-  }
-}
-
-declare module "next-auth/jwt" {
   interface JWT {
     id: string;
     role: string;
+    permissions: Permissions;
+    departmentId?: string;
     expires_at?: number;
-    refreshToken: string;
-    permissions: string[];
+    refreshToken?: string;
   }
 }
+
+export type Permissions = {
+  [page: string]: string[];
+};
+
+export type DepartmentWithPermissions = {
+  id: string;
+  name: string;
+  permissions: Permissions;
+};
