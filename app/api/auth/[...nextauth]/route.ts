@@ -1,11 +1,9 @@
-import NextAuth, { AuthOptions, Session, User } from "next-auth";
+import NextAuth, { AuthOptions, Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { JWT } from "next-auth/jwt";
-import { SignJWT } from "jose";
 import { PrismaClient } from "@prisma/client";
 import { Permissions } from "@/types/next-auth";
-import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -86,21 +84,6 @@ export const authOptions: AuthOptions = {
       return token;
     },
   },
-  events: {
-    async signIn({ user, account }) {
-      if (account?.provider === "credentials") {
-        const refreshToken = await generateRefreshToken(user);
-        NextResponse.next().cookies.set({
-          name: "refreshToken",
-          value: refreshToken,
-          httpOnly: true,
-          sameSite: "strict",
-          path: "/",
-          maxAge: 60 * 60 * 24 * 7,
-        });
-      }
-    },
-  },
   pages: {
     signIn: "/auth/signin",
     error: "/auth/error",
@@ -113,21 +96,6 @@ export const authOptions: AuthOptions = {
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
-
-async function generateRefreshToken(user: User) {
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-  const refreshToken = await new SignJWT({
-    id: user.id,
-    role: user.role,
-    departmentId: user.departmentId,
-  })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("7d")
-    .sign(secret);
-
-  return refreshToken;
-}
 
 export const hasPermission = (
   userPermissions: string[],
