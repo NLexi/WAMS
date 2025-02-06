@@ -25,14 +25,28 @@ export default function AdminPage() {
         }
     };
 
+    const handleAdminClick = async() => {
+        const res = await fetch('/api/admin', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include"
+        });
+        if (res.ok) {
+            alert('verified');
+        } else {
+            alert('unauthorized');
+        }
+    }
+
     if (isValid === "valid" && actions !== null) {
         return (
             <div className="h-screen flex flex-col justify-center items-center">
                 <h1 className="font-bold text-lg">Admin Page</h1>
                 <p>Welcome to the admin route</p>
-                <div className="mt-4 flex flex-row gap-4 p-4">
+                <div className="my-4 flex flex-row gap-4 p-4">
                     {actions.map((action: string) => renderButton(action))}
                 </div>
+                <button className="p-2 bg-slate-400 rounded-md px-4" onClick={() => handleAdminClick()}>Admin Button</button>
             </div>
         );
     }

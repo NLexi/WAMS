@@ -45,7 +45,6 @@ export async function middleware(req: any) {
       );
 
       if (req.nextUrl.pathname === "/login") {
-        console.log("halo");
         return NextResponse.redirect(new URL("/protected", req.url));
       }
       return response;
