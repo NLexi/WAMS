@@ -6,7 +6,6 @@ import { PrismaClient } from "@prisma/client";
 import { Permissions } from "@/types/next-auth";
 import { cookies } from "next/headers";
 import { SignJWT } from "jose";
-import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -73,7 +72,7 @@ export const authOptions: AuthOptions = {
         });
         (await cookies()).set("refreshToken", refreshToken, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
+          secure: true,
           path: "/",
           sameSite: "strict",
           maxAge: 604800,
@@ -93,7 +92,7 @@ export const authOptions: AuthOptions = {
       }
       return session;
     },
-    async jwt({ token, user, trigger }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;

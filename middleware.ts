@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
-import { hasPermission } from "./app/api/auth/[...nextauth]/route";
 
 export const config = {
   runtime: "nodejs",
