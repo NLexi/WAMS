@@ -4,6 +4,9 @@ import bcrypt from "bcryptjs";
 import { JWT } from "next-auth/jwt";
 import { PrismaClient } from "@prisma/client";
 import { Permissions } from "@/types/next-auth";
+import { cookies } from "next/headers";
+import { SignJWT } from "jose";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -15,7 +18,7 @@ export const authOptions: AuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Email and password are required");
         }
@@ -61,6 +64,23 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user }) {
+      if (user) {
+        const refreshToken = await generateRefreshToken({
+          id: user.id,
+          role: user.role,
+          departmentId: user.departmentId,
+        });
+        (await cookies()).set("refreshToken", refreshToken, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          path: "/",
+          sameSite: "strict",
+          maxAge: 604800,
+        });
+      }
+      return true;
+    },
     async redirect({ url, baseUrl }) {
       return url.startsWith(baseUrl) ? url : `${baseUrl}/dashboard`;
     },
@@ -73,7 +93,7 @@ export const authOptions: AuthOptions = {
       }
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
@@ -81,6 +101,7 @@ export const authOptions: AuthOptions = {
         token.departmentId = user.departmentId;
         token.expires_at = Date.now() + 7 * 24 * 60 * 60 * 1000;
       }
+
       return token;
     },
   },
@@ -90,6 +111,7 @@ export const authOptions: AuthOptions = {
   },
   session: {
     strategy: "jwt",
+    maxAge: 24 * 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
@@ -106,3 +128,22 @@ export const hasPermission = (
     userPermissions.includes(requiredPermission)
   );
 };
+
+async function generateRefreshToken(user: {
+  id: string;
+  role: string;
+  departmentId?: string;
+}) {
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  const refreshToken = await new SignJWT({
+    id: user.id,
+    role: user.role,
+    departmentId: user.departmentId,
+  })
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("7d")
+    .sign(secret);
+
+  return refreshToken;
+}

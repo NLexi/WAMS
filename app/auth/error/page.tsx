@@ -9,7 +9,7 @@ export default function AuthErrorPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push("/auth/signin");
-    }, 5000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [router]);
@@ -18,7 +18,7 @@ export default function AuthErrorPage() {
     <div className="flex flex-col h-screen justify-center items-center gap-2">
       <div className="flex flex-col bg-slate-200 justify-center w-[25%] items-center gap-4 p-6 rounded-lg">
         <h1 className="font-bold text-2xl">Authentication Error</h1>
-        <p className="text-red-500">An error occurred during sign-in. Redirecting to sign-in page...</p>
+        <p className="text-red-500 text-center font-semibold">Incorrect sign in details. Redirecting to sign-in page...</p>
       </div>
     </div>
   );

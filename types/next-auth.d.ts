@@ -26,7 +26,6 @@ declare module "next-auth" {
     permissions: Permissions;
     departmentId?: string;
     expires_at?: number;
-    refreshToken?: string;
   }
 }
 
