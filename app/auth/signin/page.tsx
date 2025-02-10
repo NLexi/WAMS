@@ -3,6 +3,12 @@
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import { z } from "zod";
+
+const schema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters long"),
+});
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
@@ -14,6 +20,14 @@ export default function SignIn() {
         e.preventDefault();
         setError("");
         setLoading(true);
+
+        const validationResult = schema.safeParse({ email, password });
+
+        if (!validationResult.success) {
+            setError(validationResult.error.errors[0].message);
+            setLoading(false);
+            return;
+        }
 
         try {
             const result = await signIn("credentials", {
@@ -35,7 +49,6 @@ export default function SignIn() {
         }
     };
 
-
     return (
         <div className="flex flex-col h-screen justify-center items-center gap-2">
             <div className="flex flex-col bg-slate-200 justify-center w-[25%] items-center gap-4 p-6 rounded-lg">
@@ -55,6 +68,7 @@ export default function SignIn() {
                         onChange={(e) => setPassword(e.target.value)}
                         className="p-2 rounded-md w-full mb-2"
                     />
+                    {error && <p className="text-red-500">{error}</p>}
                     {
                         !loading ?
                             <div className="flex w-full flex-row gap-4">
@@ -69,4 +83,3 @@ export default function SignIn() {
         </div>
     );
 }
-

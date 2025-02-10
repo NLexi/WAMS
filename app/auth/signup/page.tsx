@@ -2,6 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { z } from "zod";
+
+const signupSchema = z.object({
+    email: z.string().email("Invalid email format"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    name: z.string().min(1, "Name is required"),
+    role: z.enum(["USER", "ADMIN", "MANAGER"]),
+    departmentId: z.string().optional().or(z.literal("")),
+}).refine((data) => data.role === "ADMIN" || data.departmentId, {
+    message: "Please select a department",
+    path: ["departmentId"],
+});
 
 interface Department {
     id: string;
@@ -40,8 +52,9 @@ export default function SignupPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (formData.role !== "ADMIN" && !formData.departmentId) {
-            setError("Please select a department");
+        const validation = signupSchema.safeParse(formData);
+        if (!validation.success) {
+            setError(validation.error.errors[0].message);
             return;
         }
 
@@ -118,7 +131,7 @@ export default function SignupPage() {
                             </option>
                         ))}
                     </select>
-                    <button type="submit" className="bg-blue-300 text-white px-4 py-2 rounded w-full hover:bg-blue-500 hover:cursor-pointer" disabled={formData.role != "ADMIN" && !formData.departmentId}>
+                    <button type="submit" className="bg-blue-300 text-white px-4 py-2 rounded w-full hover:bg-blue-500 hover:cursor-pointer">
                         Sign Up
                     </button>
                 </form>
