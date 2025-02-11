@@ -85,7 +85,7 @@ export default function SignupPage() {
                 {error && <p className="text-red-500">{error}</p>}
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center w-full">
                     <input
-                        type="email"
+                        type="text"
                         placeholder="Email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}

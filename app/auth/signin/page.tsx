@@ -2,6 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -15,34 +16,35 @@ export default function SignIn() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
         setLoading(true);
-
+    
         const validationResult = schema.safeParse({ email, password });
-
+    
         if (!validationResult.success) {
             setError(validationResult.error.errors[0].message);
             setLoading(false);
             return;
         }
-
+    
         try {
             const result = await signIn("credentials", {
                 email,
                 password,
-                redirect: true,
+                redirect: false,
             });
-
+    
             if (result?.error) {
                 setError("Invalid email or password");
                 setLoading(false);
                 return;
             }
-            
-            window.location.href = "/dashboard";
+    
+            router.push("/dashboard");
         } catch (error) {
             setError("An unexpected error occurred. Please try again.");
             setLoading(false);
@@ -55,7 +57,7 @@ export default function SignIn() {
                 <h1 className="font-bold text-2xl">Sign In</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center w-full">
                     <input
-                        type="email"
+                        type="text"
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
