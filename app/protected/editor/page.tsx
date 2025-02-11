@@ -21,7 +21,6 @@ export default function EditorPage() {
         }
     };
 
-
     if (isValid === "invalid") {
         redirect('/unauthorized');
     }
