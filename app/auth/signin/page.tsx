@@ -22,33 +22,29 @@ export default function SignIn() {
         e.preventDefault();
         setError("");
         setLoading(true);
-    
+
         const validationResult = schema.safeParse({ email, password });
-    
+
         if (!validationResult.success) {
             setError(validationResult.error.errors[0].message);
             setLoading(false);
             return;
         }
-    
-        try {
-            const result = await signIn("credentials", {
-                email,
-                password,
-                redirect: false,
-            });
-    
-            if (result?.error) {
-                setError("Invalid email or password");
-                setLoading(false);
-                return;
-            }
-    
-            router.push("/dashboard");
-        } catch (error) {
-            setError("An unexpected error occurred. Please try again.");
+
+        const result = await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+        });
+
+        if (result?.error) {
+            setError("Invalid email or password");
             setLoading(false);
+            return;
         }
+
+        router.push("/dashboard");
+
     };
 
     return (

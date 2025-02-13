@@ -1,5 +1,4 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import SignIn from "@/app/auth/signin/page";
 
