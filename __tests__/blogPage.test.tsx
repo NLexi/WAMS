@@ -143,7 +143,7 @@ describe("BlogClient", () => {
         fireEvent.click(createButton);
 
         await waitFor(() => {
-            expect(screen.queryByText("Incomplete Post")).not.toBeInTheDocument();
+            expect(screen.queryByText("Title and content cannot be empty")).toBeInTheDocument();
         });
 
         fireEvent.change(titleInput, { target: { value: "" } });
@@ -152,7 +152,7 @@ describe("BlogClient", () => {
         fireEvent.click(createButton);
 
         await waitFor(() => {
-            expect(screen.queryByText("Content Only")).not.toBeInTheDocument();
+            expect(screen.queryByText("Title and content cannot be empty")).toBeInTheDocument();
         });
     });
 });

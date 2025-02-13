@@ -20,13 +20,19 @@ interface BlogClientProps {
 export default function BlogClient({ session }: BlogClientProps) {
   const [blogPosts, setBlogPosts] = useState(initialBlogPosts);
   const [newPost, setNewPost] = useState({ title: "", content: "" });
-  
+  const [errorMessage, setErrorMessage] = useState("");
+
   const canCreate = hasPagePermission(session?.user?.permissions || {}, "blog", "POST");
   const canUpdate = hasPagePermission(session?.user?.permissions || {}, "blog", "PUT");
   const canDelete = hasPagePermission(session?.user?.permissions || {}, "blog", "DELETE");
 
   const handleCreate = () => {
-    if (!newPost.title || !newPost.content) return;
+    if (!newPost.title || !newPost.content) {
+      setErrorMessage("Title and content cannot be empty");
+      return;
+    }
+    // Clear any previous error
+    setErrorMessage("");
 
     const newPostWithId = {
       id: blogPosts.length + 1,
@@ -55,7 +61,7 @@ export default function BlogClient({ session }: BlogClientProps) {
       <h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
 
       {canCreate && (
-        <div className="mb-6">
+        <div className="mb-2">
           <h2 className="text-xl font-semibold mb-2">Create a New Post</h2>
           <input
             type="text"
@@ -75,6 +81,8 @@ export default function BlogClient({ session }: BlogClientProps) {
           </button>
         </div>
       )}
+
+      {errorMessage && <p className="text-red-500 p-2">{errorMessage}</p>}
 
       <div className="flex flex-col gap-4">
         {blogPosts.map((post) => (

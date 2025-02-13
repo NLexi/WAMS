@@ -4,7 +4,6 @@ import { act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "whatwg-fetch";
 
-
 const mockPush = jest.fn();
 jest.mock("next/navigation", () => ({
     useRouter: () => ({
