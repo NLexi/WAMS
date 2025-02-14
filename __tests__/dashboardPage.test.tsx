@@ -12,7 +12,6 @@ jest.mock("next-auth", () => ({
   getServerSession: jest.fn(),
 }));
 
-
 jest.mock("next-auth/react", () => ({
   getSession: jest.fn(() => Promise.resolve(null)),
 }));

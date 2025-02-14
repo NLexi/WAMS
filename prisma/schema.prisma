@@ -21,6 +21,7 @@ model User {
   name         String
   department   Department? @relation(fields: [departmentId], references: [id])
   departmentId String?
+  blogs        Blog[]
 }
 
 model Department {
@@ -28,4 +29,12 @@ model Department {
   name        String   @unique
   users       User[]
   permissions String
+}
+
+model Blog {
+  id          String  @id @default(cuid())
+  title       String
+  content     String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
 }

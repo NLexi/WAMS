@@ -2,66 +2,105 @@
 
 import { Permissions } from "@/types/next-auth";
 import { hasPagePermission } from "@/utils/permissions";
-import { useState } from "react";
-
-const initialBlogPosts = [
-  { id: 1, title: "First Post", content: "This is the first blog post." },
-  { id: 2, title: "Second Post", content: "This is the second blog post." },
-];
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface BlogClientProps {
   session: {
     user?: {
+      id?: string;
       permissions?: Permissions;
     };
   } | null;
 }
 
+interface BlogPosts {
+  id: string;
+  title: string;
+  content: string;
+}
+
 export default function BlogClient({ session }: BlogClientProps) {
-  const [blogPosts, setBlogPosts] = useState(initialBlogPosts);
+  const [blogPosts, setBlogPosts] = useState<BlogPosts[]>([]);
   const [newPost, setNewPost] = useState({ title: "", content: "" });
   const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
 
   const canCreate = hasPagePermission(session?.user?.permissions || {}, "blog", "POST");
   const canUpdate = hasPagePermission(session?.user?.permissions || {}, "blog", "PUT");
   const canDelete = hasPagePermission(session?.user?.permissions || {}, "blog", "DELETE");
 
-  const handleCreate = () => {
+  useEffect(() => {
+    fetch("/api/blogs", { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setBlogPosts(data);
+        } else {
+          setBlogPosts([]);
+        }
+      })
+      .catch(() => setBlogPosts([]));
+  }, []);
+
+  const handleCreate = async () => {
     if (!newPost.title || !newPost.content) {
       setErrorMessage("Title and content cannot be empty");
       return;
     }
-    // Clear any previous error
+
     setErrorMessage("");
+    const response = await fetch("/api/blogs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: newPost.title,
+        content: newPost.content,
+        userId: session?.user?.id
+      }),
+    });
 
-    const newPostWithId = {
-      id: blogPosts.length + 1,
-      title: newPost.title,
-      content: newPost.content,
-    };
+    if (!response.ok) {
+      setErrorMessage("Failed to create post");
+      return;
+    }
 
-    setBlogPosts([...blogPosts, newPostWithId]);
+    const newBlog = await response.json();
+    await setBlogPosts((prev) => [...prev, newBlog]);
     setNewPost({ title: "", content: "" });
   };
 
-  const handleUpdate = (id: number, updatedTitle: string, updatedContent: string) => {
-    const updatedPosts = blogPosts.map((post) =>
-      post.id === id ? { ...post, title: updatedTitle, content: updatedContent } : post
-    );
-    setBlogPosts(updatedPosts);
+  const handleUpdate = async (id: string, updatedTitle: string, updatedContent: string) => {
+    const response = await fetch(`/api/blogs/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: updatedTitle, content: updatedContent }),
+    });
+
+    if (!response.ok) {
+      alert("Failed to update post");
+      return;
+    }
+
+    const updatedBlog = await response.json();
+    setBlogPosts((prev) => prev.map((post) => (post.id === id ? updatedBlog : post)));
   };
 
-  const handleDelete = (id: number) => {
-    const filteredPosts = blogPosts.filter((post) => post.id !== id);
-    setBlogPosts(filteredPosts);
+  const handleDelete = async (id: string) => {
+    await fetch(`/api/blogs/${id}`, { method: "DELETE" });
+
+    setBlogPosts(blogPosts.filter((post) => post.id !== id));
   };
 
   return (
     <div className="p-8 m-auto">
-      <h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
+      <div className="flex w-full flex-row items-center justify-between">
+        <h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
+        <button className="bg-slate-300 p-2 px-4 rounded- font-medium text-sm" onClick={() => router.push('/dashboard')}>Back</button>
+      </div>
 
       {canCreate && (
-        <div className="mb-2">
+        <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2">Create a New Post</h2>
           <input
             type="text"
